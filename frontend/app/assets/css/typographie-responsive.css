@@ -1,0 +1,5198 @@
+/* GROUPE MKM — Harmonisation typographique globale
+   À charger APRÈS style.css et layout.css dans nuxt.config.ts.
+   Ne modifie ni les polices, ni les couleurs, ni les grilles.
+   Les éléments du header/footer continuent à utiliser leurs styles existants.
+*/
+
+@media (max-width: 1280px) {
+  body.mkm-site {
+    /* Design system : s'applique aux composants utilisant déjà les tokens */
+    --mkm-h1: clamp(2.4rem, 3.5vw, 3.3rem);
+    --mkm-h2: clamp(1.5rem, 2.45vw, 2rem);
+    --mkm-h3: 1.125rem;
+    --mkm-text-base: 0.9375rem;
+    --mkm-text-lg: 0.96875rem;
+    --mkm-text-sm: 0.8125rem;
+
+    /* Niveaux de texte communs aux pages ayant des tailles locales */
+    --mkm-r-hero: clamp(2.4rem, 3.5vw, 3.3rem);
+    --mkm-r-section: clamp(1.5rem, 2.45vw, 2rem);
+    --mkm-r-card: clamp(1rem, 1.4vw, 1.1875rem);
+    --mkm-r-subsection: 1.3rem;
+    --mkm-r-lead: 0.96875rem;
+    --mkm-r-desc: 0.9375rem;
+    --mkm-r-label: 0.8125rem;
+  }
+
+  /* Titres par défaut, pour les nouvelles pages et pages simples */
+  body.mkm-site main h1 { font-size: var(--mkm-r-hero); }
+  body.mkm-site main h2 { font-size: var(--mkm-r-section); }
+  body.mkm-site main h3 { font-size: var(--mkm-r-card); }
+
+  /* Hero d'accueil, rendu en dehors de <main> par le layout */
+  body.mkm-site .mkm-hero .mkm-hero__title {
+    font-size: var(--mkm-r-hero);
+    line-height: 1.12;
+  }
+  body.mkm-site .mkm-hero .mkm-hero__description {
+    font-size: var(--mkm-r-lead);
+    line-height: 1.6;
+  }
+
+  /* H1 explicitement dimensionnés dans layout.css et dans les pages Vue */
+  body.mkm-site main :is(
+    .mkm-groupe, .mkm-immo-hero, .mkm-engin-hero,
+    .mkm-livre-hero, .mkm-num-hero, .mkm-num-offre-hero,
+    .mkm-contact-hero, .mkm-conseil-hero, .mkm-transport-hero,
+    .mkm-realisations__entete, .mkm-engin-fiche
+  ) h1 {
+    font-size: var(--mkm-r-hero);
+    line-height: 1.12;
+  }
+
+  /* H2 de grandes sections : éviter d'agrandir les petits titres de cartes */
+  body.mkm-site main :is(
+    .mkm-section__head, .mkm-groupe__intro, .mkm-groupe__valeurs,
+    .mkm-expertises, .mkm-stats, .mkm-realisations,
+    .mkm-immo-services, .mkm-livre-prestations,
+    .mkm-livre-publics,
+    .mkm-num-offre-presta, .mkm-num-cartes,
+    .mkm-transport-poles__intro, .mkm-transport-cta,
+    .mkm-conseil-prestations__entete, .mkm-conseil-bandeau
+  ) h2 {
+    font-size: var(--mkm-r-section);
+    line-height: 1.25;
+  }
+
+  /* Titres de sous-sections plus discrets (Contact, engins...) */
+  body.mkm-site main :is(
+    .mkm-contact-carte, .mkm-contact-assistance__entete,
+    .mkm-engin-categories, .mkm-engin-populaires,
+    .mkm-engin-fiche
+  ) h2 {
+    font-size: var(--mkm-r-subsection);
+    line-height: 1.3;
+  }
+
+  /* Titres de cartes et sous-sections */
+  body.mkm-site main :is(
+    .mkm-card, .mkm-showcase__item, .mkm-groupe__domaine,
+    .mkm-immo-services, .mkm-livre-prestations,
+    .mkm-engin-populaires, .mkm-num-offre-presta,
+    .mkm-transport-pole, .mkm-conseil-carte,
+    .mkm-contact-assistance__carte
+  ) h3,
+  body.mkm-site main .mkm-showcase__title,
+  body.mkm-site main .mkm-num-cartes .card__heading {
+    font-size: var(--mkm-r-card);
+    line-height: 1.35;
+  }
+
+  /* Textes introductifs, sous-titres et descriptions */
+  body.mkm-site main :is(
+    .mkm-lead, .mkm-card__description,
+    .mkm-engin-hero__subtitle, .mkm-num-offre-hero__intro,
+    .mkm-contact-hero p, .mkm-conseil-hero p,
+    .mkm-transport-hero__description
+  ) {
+    font-size: var(--mkm-r-lead);
+    line-height: 1.6;
+  }
+
+  body.mkm-site main :is(
+    .mkm-groupe, .mkm-immo-services, .mkm-livre-prestations,
+    .mkm-livre-publics, .mkm-engin-fiche,
+    .mkm-transport-pole__contenu, .mkm-conseil-carte__contenu,
+    .mkm-contact-assistance__carte
+  ) p:not(.mkm-eyebrow),
+  body.mkm-site main :is(
+    .mkm-transport-poles__description,
+    .mkm-transport-pole__description,
+    .mkm-contact-detail a, .mkm-contact-detail address,
+    .mkm-contact-detail p
+  ) {
+    font-size: var(--mkm-r-desc);
+    line-height: 1.6;
+  }
+
+  /* Repères / petits textes, sans changer leur graisse ou leur couleur */
+  body.mkm-site main :is(
+    .mkm-eyebrow, .mkm-contact-hero__tag,
+    .mkm-transport-hero__eyebrow,
+    .mkm-conseil-hero__eyebrow
+  ) {
+    font-size: var(--mkm-r-label);
+  }
+}
+
+@media (max-width: 1024px) {
+  body.mkm-site {
+    --mkm-h1: clamp(2.125rem, 4vw, 2.8rem);
+    --mkm-h2: clamp(1.4rem, 2.7vw, 1.75rem);
+    --mkm-h3: 1.0625rem;
+    --mkm-text-base: 0.9rem;
+    --mkm-text-lg: 0.9375rem;
+    --mkm-text-sm: 0.8rem;
+
+    --mkm-r-hero: clamp(2.125rem, 4vw, 2.8rem);
+    --mkm-r-section: clamp(1.4rem, 2.7vw, 1.75rem);
+    --mkm-r-card: clamp(1rem, 1.65vw, 1.125rem);
+    --mkm-r-subsection: 1.2rem;
+    --mkm-r-lead: 0.9375rem;
+    --mkm-r-desc: 0.9rem;
+    --mkm-r-label: 0.78rem;
+  }
+}
+
+@media (max-width: 600px) {
+  body.mkm-site {
+    --mkm-h1: clamp(1.875rem, 7vw, 2.5rem);
+    --mkm-h2: clamp(1.25rem, 4.5vw, 1.55rem);
+    --mkm-h3: 1rem;
+    --mkm-text-base: 0.875rem;
+    --mkm-text-lg: 0.875rem;
+    --mkm-text-sm: 0.8rem;
+
+    --mkm-r-hero: clamp(1.875rem, 7vw, 2.5rem);
+    --mkm-r-section: clamp(1.25rem, 4.5vw, 1.55rem);
+    --mkm-r-card: clamp(0.9375rem, 3.8vw, 1.0625rem);
+    --mkm-r-subsection: 1.1rem;
+    --mkm-r-lead: 0.875rem;
+    --mkm-r-desc: 0.875rem;
+    --mkm-r-label: 0.75rem;
+  }
+}
+
+
+
+/* =========================================
+   GROUPE MKM — BOUTONS RESPONSIVE
+   Accueil, services, contact, cartes et CTA
+========================================= */
+
+/* Écrans jusqu'à 1280px */
+@media (max-width: 1280px) {
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) {
+    font-size: 0.875rem;
+    line-height: 1.3;
+    min-height: 44px;
+    padding: 0.6rem 1.15rem;
+    gap: 0.5rem;
+  }
+
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+}
+
+/* Écrans jusqu'à 1024px */
+@media (max-width: 1024px) {
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) {
+    font-size: 0.8125rem;
+    min-height: 42px;
+    padding: 0.55rem 1rem;
+    gap: 0.45rem;
+  }
+
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Smartphones jusqu'à 600px */
+@media (max-width: 600px) {
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) {
+    font-size: 0.8125rem;
+    min-height: 44px;
+    padding: 0.65rem 1rem;
+    gap: 0.4rem;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+
+/* =========================================
+   GROUPE MKM — BOUTONS RESPONSIVE
+   Accueil, services, contact, cartes et CTA
+========================================= */
+
+/* Écrans jusqu'à 1280px */
+@media (max-width: 1280px) {
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) {
+    font-size: 0.875rem;
+    line-height: 1.3;
+    min-height: 44px;
+    padding: 0.6rem 1.15rem;
+    gap: 0.5rem;
+  }
+
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+}
+
+/* Écrans jusqu'à 1024px */
+@media (max-width: 1024px) {
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) {
+    font-size: 0.8125rem;
+    min-height: 42px;
+    padding: 0.55rem 1rem;
+    gap: 0.45rem;
+  }
+
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Smartphones jusqu'à 600px */
+@media (max-width: 600px) {
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) {
+    font-size: 0.8125rem;
+    min-height: 44px;
+    padding: 0.65rem 1rem;
+    gap: 0.4rem;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+
+
+/* =========================================
+   GROUPE MKM — BOUTONS RESPONSIVE
+   Accueil, services, contact, cartes et CTA
+========================================= */
+
+/* Écrans jusqu'à 1280px */
+@media (max-width: 1280px) {
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) {
+    font-size: 0.875rem;
+    line-height: 1.3;
+    min-height: 44px;
+    padding: 0.6rem 1.15rem;
+    gap: 0.5rem;
+  }
+
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+}
+
+/* Écrans jusqu'à 1024px */
+@media (max-width: 1024px) {
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) {
+    font-size: 0.8125rem;
+    min-height: 42px;
+    padding: 0.55rem 1rem;
+    gap: 0.45rem;
+  }
+
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Smartphones jusqu'à 600px */
+@media (max-width: 600px) {
+  body.mkm-site :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) {
+    font-size: 0.8125rem;
+    min-height: 44px;
+    padding: 0.65rem 1rem;
+    gap: 0.4rem;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+
+/* ==========================================
+   GROUPE MKM — PICTOGRAMMES RESPONSIVE
+========================================== */
+
+/* Écrans jusqu'à 1280px */
+
+@media (max-width: 1280px) {
+
+  /* Pictogrammes des bandes de services */
+  #contenu :is(
+    .mkm-conseil-atouts__icone,
+    .mkm-transport-atouts__icone
+  ) {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+  }
+
+  /* Illustrations des cartes */
+  #contenu .mkm-card__illustration {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* Pictogrammes SVG des services */
+  #contenu .mkm-icon--service {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Engagements de la page Contact */
+  #contenu .mkm-contact-engagement svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  /* Cercles des coordonnées */
+  #contenu .mkm-contact-detail__icone {
+    width: 56px;
+    height: 56px;
+    flex-basis: 56px;
+  }
+
+  #contenu .mkm-contact-detail__icone svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Cercles d'assistance */
+  #contenu .mkm-contact-assistance__icone {
+    width: 64px;
+    height: 64px;
+  }
+
+  #contenu .mkm-contact-assistance__icone svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Écrans jusqu'à 1024px */
+
+@media (max-width: 1024px) {
+
+  #contenu :is(
+    .mkm-conseil-atouts__icone,
+    .mkm-transport-atouts__icone
+  ) {
+    width: 46px;
+    height: 46px;
+  }
+
+  #contenu .mkm-card__illustration {
+    width: 64px;
+    height: 64px;
+  }
+
+  #contenu .mkm-icon--service {
+    width: 36px;
+    height: 36px;
+  }
+
+  #contenu .mkm-contact-engagement svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  #contenu .mkm-contact-detail__icone {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+
+  #contenu .mkm-contact-detail__icone svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  #contenu .mkm-contact-assistance__icone {
+    width: 58px;
+    height: 58px;
+  }
+
+  #contenu .mkm-contact-assistance__icone svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* Smartphones jusqu'à 600px */
+
+@media (max-width: 600px) {
+
+  #contenu :is(
+    .mkm-conseil-atouts__icone,
+    .mkm-transport-atouts__icone
+  ) {
+    width: 40px;
+    height: 40px;
+  }
+
+  #contenu .mkm-card__illustration {
+    width: 52px;
+    height: 52px;
+  }
+
+  #contenu .mkm-icon--service {
+    width: 32px;
+    height: 32px;
+  }
+
+  #contenu .mkm-contact-engagement svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  #contenu .mkm-contact-detail__icone {
+    width: 46px;
+    height: 46px;
+    flex-basis: 46px;
+  }
+
+  #contenu .mkm-contact-detail__icone svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  #contenu .mkm-contact-assistance__icone {
+    width: 54px;
+    height: 54px;
+  }
+
+  #contenu .mkm-contact-assistance__icone svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+
+/* Boutons : écrans de 1360px et moins */
+
+@media (max-width: 1360px) {
+  :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.9rem;
+    min-height: 38px;
+    line-height: 1.3;
+    gap: 0.4rem;
+  }
+
+  /* Icônes dans les boutons */
+  :is(
+    .mkm-btn,
+    .mkm-transport-btn,
+    .mkm-contact-bouton,
+    .card__cta
+  ) svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+
+/* =========================================
+   ACCUEIL — BOUTON WHATSAPP
+========================================= */
+
+.mkm-hero .mkm-actions .mkm-btn--whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+
+  background: #119c52;
+  background-image: none;
+  border: 1px solid #119c52;
+  color: #ffffff;
+
+  border-radius: 50px;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background-color .25s ease,
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+.mkm-hero .mkm-actions .mkm-btn--whatsapp:hover {
+  background: #087b3d;
+  border-color: #087b3d;
+  color: #ffffff;
+
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(17, 156, 82, .2);
+}
+
+.mkm-hero .mkm-actions .mkm-btn--whatsapp svg {
+  flex-shrink: 0;
+  width: 19px;
+  height: 19px;
+}
+
+
+
+/* =========================================
+   ACCUEIL — BOUTONS SUR UNE SEULE LIGNE
+   Écrans de 1280 à 1360px
+========================================= */
+
+@media (min-width: 1280px) and (max-width: 1360px) {
+
+  /* Conserver les boutons sur la même ligne */
+  .mkm-hero .mkm-actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  /* Réduire uniquement les boutons */
+  .mkm-hero .mkm-actions .mkm-btn {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 0;
+    min-height: 40px;
+
+    padding: 0.5rem 0.7rem;
+    font-size: 0.72rem;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    gap: 0.35rem;
+
+    white-space: nowrap;
+  }
+
+  /* Icônes adaptées */
+  .mkm-hero .mkm-actions .mkm-btn svg,
+  .mkm-hero .mkm-actions .mkm-btn .mkm-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+}
+
+
+/* ==========================================
+   MKM — TITRES PRINCIPAUX DES SECTIONS
+========================================== */
+
+body.mkm-site {
+  --mkm-titre-section: clamp(1.6rem, 2.2vw, 2rem);
+}
+
+/* Même taille pour les grands titres de section */
+body.mkm-site main .mkm-section__head h2,
+body.mkm-site main .mkm-stats h2 {
+  font-size: var(--mkm-titre-section);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+
+@media (max-width: 1024px) {
+  body.mkm-site {
+    --mkm-titre-section: 1.65rem;
+  }
+}
+
+@media (max-width: 600px) {
+  body.mkm-site {
+    --mkm-titre-section: 1.4rem;
+  }
+}
+
+
+/* ACCUEIL — TITRE DE LA SECTION EXPERTISES */
+
+.mkm-site .mkm-expertises
+.mkm-section__head h2 {
+  font-size: 2rem !important;
+  line-height: 1.2;
+}
+
+/* Écrans jusqu'à 1360px */
+@media (max-width: 1360px) {
+  .mkm-site .mkm-expertises
+  .mkm-section__head h2 {
+    font-size: 1.75rem !important;
+  }
+}
+
+/* Tablettes */
+@media (max-width: 900px) {
+  .mkm-site .mkm-expertises
+  .mkm-section__head h2 {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* Smartphones */
+@media (max-width: 600px) {
+  .mkm-site .mkm-expertises
+  .mkm-section__head h2 {
+    font-size: 1.375rem !important;
+  }
+}
+
+
+/* ==========================================
+   LE GROUPE — BLOC EN BREF
+========================================== */
+
+.mkm-site .mkm-groupe__bref {
+  padding: 1.4rem 1.5rem;
+  background: #f4f7fa;
+  border: 1px solid #e6edf3;
+  border-radius: 14px;
+}
+
+/* Titre plus discret */
+.mkm-site .mkm-groupe__bref h3 {
+  margin-bottom: 0.8rem;
+  color: #071b3b;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Réduire les espacements des informations */
+.mkm-site .mkm-groupe__reperes li {
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.65rem 0;
+  border-bottom-color: #e2e8ee;
+}
+
+/* Uniformiser les pictogrammes */
+.mkm-site .mkm-groupe__reperes .mkm-icon {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  color: #b98b35;
+  justify-self: center;
+}
+
+/* Typographie */
+.mkm-site .mkm-groupe__reperes strong {
+  margin-bottom: 0.1rem;
+  font-size: 0.87rem;
+  font-weight: 700;
+}
+
+.mkm-site .mkm-groupe__reperes p {
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+/* ==========================================
+   LE GROUPE — PARCOURS EN 3 ÉTAPES
+========================================== */
+
+/* Réduction de l'espace entre les blocs */
+.mkm-site .mkm-groupe__engagements {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+
+  margin: 1.5rem 0 0;
+  padding: 0;
+  border-top: none;
+
+  list-style: none;
+}
+
+/* Cartes du parcours */
+.mkm-site .mkm-groupe__engagements
+.mkm-groupe__engagement {
+  position: relative;
+  min-width: 0;
+  padding: 1.3rem;
+  overflow: hidden;
+
+  background: #ffffff;
+  border: 1px solid #e3e9ee;
+  border-top: 3px solid #c49a43;
+  border-radius: 10px;
+
+  box-shadow: 0 6px 18px rgba(7, 27, 59, 0.035);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Supprimer les anciens fonds alternés */
+.mkm-site .mkm-groupe__engagements
+.mkm-groupe__engagement:nth-child(n) {
+  background: #ffffff;
+}
+
+/* Icône à gauche, numéro à droite */
+.mkm-groupe__engagement-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.mkm-groupe__engagement-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+
+  background: #f8f2e6;
+  border-radius: 10px;
+  color: #af8029;
+}
+
+.mkm-site .mkm-groupe__engagement-icon
+.mkm-icon {
+  width: 23px;
+  height: 23px;
+  color: #af8029;
+}
+
+.mkm-groupe__engagement-numero {
+  color: #c49a43;
+  font-size: 0.95rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+}
+
+/* Titres et descriptions */
+.mkm-site .mkm-groupe__engagement h3 {
+  margin: 0 0 0.5rem;
+  color: #071b3b;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.mkm-site .mkm-groupe__engagement p {
+  max-width: none;
+  margin: 0;
+  color: #526174;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* Interaction discrète */
+@media (hover: hover) {
+  .mkm-site .mkm-groupe__engagement:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(7, 27, 59, 0.08);
+  }
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1360px) {
+  .mkm-site .mkm-groupe__bref {
+    padding: 1.15rem 1.25rem;
+  }
+
+  .mkm-site .mkm-groupe__engagements {
+    margin-top: 1.25rem;
+    gap: 0.8rem;
+  }
+
+  .mkm-site .mkm-groupe__engagements
+  .mkm-groupe__engagement {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .mkm-site .mkm-groupe__engagements {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .mkm-site .mkm-groupe__bref {
+    padding: 1rem;
+  }
+
+  .mkm-site .mkm-groupe__bref h3 {
+    font-size: 1rem;
+  }
+
+  .mkm-site .mkm-groupe__reperes li {
+    padding: 0.55rem 0;
+  }
+
+  .mkm-site .mkm-groupe__engagements {
+    margin-top: 1rem;
+  }
+
+  .mkm-site .mkm-groupe__engagement h3 {
+    font-size: 0.98rem;
+  }
+
+  .mkm-site .mkm-groupe__engagement p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mkm-site .mkm-groupe__engagement {
+    transition: none;
+  }
+
+  .mkm-site .mkm-groupe__engagement:hover {
+    transform: none;
+  }
+}
+
+
+
+/* ==========================================
+   LE GROUPE — EXPERTISES COMPLÉMENTAIRES
+========================================== */
+
+/* Cartes réduites d'environ 15 % en hauteur */
+.mkm-site .mkm-groupe__domaine {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  aspect-ratio: 16 / 17;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 10px;
+
+  transition: box-shadow 0.35s ease;
+}
+
+/* Photographie */
+.mkm-site .mkm-groupe__domaine-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: transform 0.5s ease;
+}
+
+/* Dégradé permanent */
+.mkm-site .mkm-groupe__domaine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to top,
+    rgba(3, 21, 37, 0.96) 0%,
+    rgba(3, 21, 37, 0.82) 28%,
+    rgba(3, 21, 37, 0.35) 60%,
+    transparent 85%
+  );
+
+  opacity: 1;
+  transition: background 0.35s ease;
+}
+
+/* Bloc texte : grille interne uniforme */
+.mkm-site .mkm-groupe__domaine-body {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows:
+    minmax(2.5em, auto)
+    minmax(4.2em, auto)
+    auto;
+  align-content: end;
+  gap: 0.45rem;
+
+  width: 100%;
+  padding: 1rem 1.05rem 1.05rem;
+  opacity: 1;
+
+  transition: transform 0.35s ease;
+}
+
+/* Titres alignés */
+.mkm-site .mkm-groupe
+.mkm-groupe__domaine h3 {
+  align-self: start;
+  margin: 0;
+  color: #fff;
+
+  font-size: clamp(1rem, 1.1vw, 1.15rem);
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+/* Descriptions équilibrées */
+.mkm-site .mkm-groupe__domaine p {
+  align-self: start;
+  max-width: 38ch;
+  min-height: 4.2em;
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.91);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* Liens alignés en bas */
+.mkm-site .mkm-groupe__service-link {
+  display: inline-flex;
+  align-items: center;
+  align-self: end;
+  gap: 0.4rem;
+
+  margin: 0;
+  color: var(--mkm-gold);
+  font-size: 0.8125rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+/* ==========================================
+   NOUVEL EFFET DE SURVOL
+========================================== */
+
+/* Maintenir le texte visible */
+.mkm-site .mkm-groupe__domaine:hover
+.mkm-groupe__domaine-body,
+.mkm-site .mkm-groupe__domaine:focus-visible
+.mkm-groupe__domaine-body {
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+/* Zoom discret sur l'image */
+.mkm-site .mkm-groupe__domaine:hover
+.mkm-groupe__domaine-media,
+.mkm-site .mkm-groupe__domaine:focus-visible
+.mkm-groupe__domaine-media {
+  transform: scale(1.045);
+}
+
+/* Dégradé renforcé au survol */
+.mkm-site .mkm-groupe__domaine:hover::after,
+.mkm-site .mkm-groupe__domaine:focus-visible::after {
+  opacity: 1;
+
+  background: linear-gradient(
+    to top,
+    rgba(3, 21, 37, 0.99) 0%,
+    rgba(3, 21, 37, 0.88) 35%,
+    rgba(3, 21, 37, 0.42) 65%,
+    transparent 90%
+  );
+}
+
+/* Mise en valeur du lien */
+.mkm-site .mkm-groupe__domaine:hover
+.mkm-groupe__service-link,
+.mkm-site .mkm-groupe__domaine:focus-visible
+.mkm-groupe__service-link {
+  color: #f4cc70;
+}
+
+/* Accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  .mkm-site .mkm-groupe__domaine,
+  .mkm-site .mkm-groupe__domaine-media,
+  .mkm-site .mkm-groupe__domaine-body {
+    transition: none;
+  }
+
+  .mkm-site .mkm-groupe__domaine:hover
+  .mkm-groupe__domaine-media,
+  .mkm-site .mkm-groupe__domaine:hover
+  .mkm-groupe__domaine-body {
+    transform: none;
+  }
+}
+
+
+
+/* ==========================================
+   LE GROUPE — PORTRAITS DE L'ÉQUIPE
+   Réduction et cadrage uniforme
+========================================== */
+
+/* Grands écrans */
+body.mkm-site .mkm-groupe__equipe img {
+  display: block;
+  width: min(100%, 210px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+
+  margin: 0 auto;
+  object-fit: cover;
+  object-position: center 28%;
+  border-radius: 50%;
+}
+
+/* Réduire l'espace sous les portraits */
+body.mkm-site .mkm-groupe__equipe h3 {
+  margin-top: 0.7rem;
+}
+
+/* Rapprocher légèrement les lignes */
+body.mkm-site .mkm-groupe__equipe {
+  row-gap: 1.6rem;
+}
+
+/* Écrans inférieurs à 1360px */
+@media (max-width: 1359px) {
+  body.mkm-site .mkm-groupe__equipe img {
+    width: min(100%, 155px);
+  }
+}
+
+/* Tablettes */
+@media (max-width: 900px) {
+  body.mkm-site .mkm-groupe__equipe img {
+    width: min(100%, 130px);
+  }
+}
+
+/* Smartphones */
+@media (max-width: 600px) {
+  body.mkm-site .mkm-groupe__equipe img {
+    width: min(100%, 110px);
+  }
+}
+
+
+
+
+/* ==========================================
+   LE GROUPE — CARTES ÉQUIPE PREMIUM
+========================================== */
+
+/* Grille : conserver les 4 colonnes */
+body.mkm-site .mkm-groupe__equipe {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 1.25rem;
+}
+
+/* Chaque membre occupe toute sa cellule */
+body.mkm-site .mkm-groupe__equipe > li.mkm-groupe__membre {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Carte */
+body.mkm-site .mkm-groupe__membre-carte {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem 1.15rem;
+
+  background: #ffffff;
+  border: 1px solid #e5ebf1;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(7, 27, 59, 0.035);
+
+  text-align: center;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Conteneur du portrait */
+body.mkm-site .mkm-groupe__membre-photo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  margin-bottom: 1.05rem;
+}
+
+/* Portrait uniforme */
+body.mkm-site .mkm-groupe__equipe
+img.mkm-groupe__membre-photo {
+  display: block;
+  width: min(100%, 180px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+  object-position: center 28%;
+  border-radius: 50%;
+
+  background: #edf1f5;
+  border: 4px solid #f4f6f8;
+
+  box-shadow: none;
+  transform: none;
+}
+
+/* Identité : hauteur cohérente */
+body.mkm-site .mkm-groupe__membre-identite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  min-height: 5.6rem;
+}
+
+/* Nom */
+body.mkm-site .mkm-groupe__membre-identite h3 {
+  margin: 0;
+  color: #071b3b;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Fonction */
+body.mkm-site .mkm-groupe__equipe
+.mkm-groupe__membre-fonction {
+  margin: 0;
+  color: #526174;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+/* Badge du pôle */
+body.mkm-site .mkm-groupe__membre-pole {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 30px;
+  max-width: 100%;
+  margin-top: 0.8rem;
+  padding: 0.35rem 0.75rem;
+
+  color: #94702e;
+  background: #f7f3eb;
+  border-radius: 50px;
+
+  font-size: 0.69rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+/* Mention métier, alignée en bas */
+body.mkm-site .mkm-groupe__equipe
+.mkm-groupe__membre-mission {
+  width: 100%;
+  max-width: none;
+  margin: auto 0 0;
+  padding-top: 1rem;
+
+  color: #687588;
+  font-size: 0.79rem;
+  line-height: 1.55;
+}
+
+/* Séparation au-dessus de la mission */
+body.mkm-site .mkm-groupe__membre-mission::before {
+  content: "";
+  display: block;
+
+  width: 38px;
+  height: 1px;
+  margin: 0 auto 0.85rem;
+  background: #d8c199;
+}
+
+/* Survol : carte légèrement relevée */
+@media (hover: hover) {
+  body.mkm-site .mkm-groupe__membre-carte:hover {
+    transform: translateY(-5px);
+    border-color: #d5bd88;
+    box-shadow: 0 14px 30px rgba(7, 27, 59, 0.09);
+  }
+
+  /* Le portrait ne grossit plus */
+  body.mkm-site .mkm-groupe__membre:hover
+  img.mkm-groupe__membre-photo {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+
+/* Écrans de 1360px et moins */
+@media (max-width: 1360px) {
+  body.mkm-site .mkm-groupe__membre-carte {
+    padding: 1.2rem 0.95rem;
+  }
+
+  body.mkm-site .mkm-groupe__equipe
+  img.mkm-groupe__membre-photo {
+    width: min(100%, 150px);
+  }
+
+  body.mkm-site .mkm-groupe__equipe {
+    gap: 1rem;
+  }
+}
+
+/* Tablettes et petits ordinateurs */
+@media (max-width: 1152px) {
+  body.mkm-site .mkm-groupe__equipe {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Smartphones */
+@media (max-width: 600px) {
+  body.mkm-site .mkm-groupe__equipe {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 400px;
+    margin-inline: auto;
+  }
+
+  body.mkm-site .mkm-groupe__membre-carte {
+    padding: 1.4rem 1.25rem;
+  }
+
+  body.mkm-site .mkm-groupe__equipe
+  img.mkm-groupe__membre-photo {
+    width: min(100%, 135px);
+  }
+
+  body.mkm-site .mkm-groupe__membre-identite {
+    min-height: 0;
+  }
+
+  body.mkm-site .mkm-groupe__membre-pole {
+    margin-top: 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.mkm-site .mkm-groupe__membre-carte {
+    transition: none;
+  }
+
+  body.mkm-site .mkm-groupe__membre-carte:hover {
+    transform: none;
+  }
+}
+
+
+/* LE GROUPE — HARMONISATION DES PORTRAITS */
+
+body.mkm-site .mkm-groupe__membre-photo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+body.mkm-site .mkm-groupe__equipe
+img.mkm-groupe__membre-photo {
+  display: block;
+
+  width: min(100%, 180px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+  object-position: center center;
+
+  background-color: #eef0f1;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+
+  box-shadow: 0 0 0 1px #e3e7eb;
+}
+
+/* Écrans inférieurs à 1360px */
+@media (max-width: 1359px) {
+  body.mkm-site .mkm-groupe__equipe
+  img.mkm-groupe__membre-photo {
+    width: min(100%, 150px);
+  }
+}
+
+/* Tablettes */
+@media (max-width: 900px) {
+  body.mkm-site .mkm-groupe__equipe
+  img.mkm-groupe__membre-photo {
+    width: min(100%, 130px);
+  }
+}
+
+/* Smartphones */
+@media (max-width: 600px) {
+  body.mkm-site .mkm-groupe__equipe
+  img.mkm-groupe__membre-photo {
+    width: min(100%, 115px);
+  }
+}
+
+
+
+
+/* ==========================================
+   LE GROUPE — HIÉRARCHIE DE L'ÉQUIPE
+========================================== */
+
+body.mkm-site .mkm-groupe__organigramme {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* En-tête de chaque niveau */
+body.mkm-site .mkm-groupe__niveau-header {
+  margin-bottom: 1.35rem;
+  text-align: center;
+}
+
+body.mkm-site .mkm-groupe__niveau-numero {
+  display: inline-block;
+  margin-bottom: 0.45rem;
+  color: #b48b3b;
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+body.mkm-site .mkm-groupe__niveau-header h3 {
+  margin: 0 0 0.45rem;
+  color: #071b3b;
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+
+body.mkm-site .mkm-groupe__niveau-header p {
+  max-width: 620px;
+  margin: 0 auto;
+  color: #617083;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* Séparations entre les niveaux */
+body.mkm-site .mkm-groupe__niveau + .mkm-groupe__niveau {
+  padding-top: 2rem;
+  border-top: 1px solid #dce4eb;
+}
+
+/* ==========================================
+   NIVEAU 1 — DIRECTION GÉNÉRALE
+========================================== */
+
+body.mkm-site .mkm-groupe__niveau--direction
+.mkm-groupe__equipe {
+  display: grid;
+  grid-template-columns: minmax(0, 340px);
+  justify-content: center;
+}
+
+body.mkm-site .mkm-groupe__niveau--direction
+.mkm-groupe__equipe > li.mkm-groupe__membre {
+  width: 100%;
+}
+
+body.mkm-site .mkm-groupe__niveau--direction
+.mkm-groupe__membre-carte {
+  border-color: #d8c395;
+  box-shadow: 0 9px 28px rgba(7, 27, 59, 0.075);
+}
+
+body.mkm-site .mkm-groupe__niveau--direction
+.mkm-groupe__equipe img.mkm-groupe__membre-photo {
+  width: min(100%, 190px);
+}
+
+/* ==========================================
+   NIVEAU 2 — RESPONSABLES STRATÉGIQUES
+========================================== */
+
+body.mkm-site .mkm-groupe__niveau--strategique
+.mkm-groupe__equipe {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1.2rem;
+}
+
+body.mkm-site .mkm-groupe__niveau--strategique
+.mkm-groupe__equipe > li.mkm-groupe__membre {
+  flex: 0 1 calc((100% - 2.4rem) / 3);
+  width: calc((100% - 2.4rem) / 3);
+  min-width: 0;
+}
+
+/* ==========================================
+   NIVEAU 3 — RELATIONS PUBLIQUES
+========================================== */
+
+body.mkm-site .mkm-groupe__niveau--relations
+.mkm-groupe__equipe {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+body.mkm-site .mkm-groupe__niveau--relations
+.mkm-groupe__equipe > li.mkm-groupe__membre {
+  width: 100%;
+  min-width: 0;
+}
+
+/* ==========================================
+   TYPOGRAPHIE DES CARTES
+========================================== */
+
+body.mkm-site .mkm-groupe__membre-identite h4 {
+  margin: 0;
+  color: #071b3b;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1152px) {
+  body.mkm-site .mkm-groupe__niveau--strategique
+  .mkm-groupe__equipe > li.mkm-groupe__membre {
+    flex-basis: calc((100% - 1.2rem) / 2);
+    width: calc((100% - 1.2rem) / 2);
+  }
+
+  body.mkm-site .mkm-groupe__niveau--relations
+  .mkm-groupe__equipe {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  body.mkm-site .mkm-groupe__organigramme {
+    gap: 2rem;
+  }
+
+  body.mkm-site .mkm-groupe__niveau-header h3 {
+    font-size: 1.15rem;
+  }
+
+  body.mkm-site .mkm-groupe__niveau--strategique
+  .mkm-groupe__equipe > li.mkm-groupe__membre {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  body.mkm-site .mkm-groupe__niveau--relations
+  .mkm-groupe__equipe {
+    grid-template-columns: 1fr;
+  }
+
+  body.mkm-site .mkm-groupe__niveau--direction
+  .mkm-groupe__equipe {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+
+/* ==========================================
+   LE GROUPE — CTA SOUS L'ÉQUIPE
+========================================== */
+
+body.mkm-site .mkm-groupe__equipe-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+
+  text-align: center;
+}
+
+/* Phrase centrée */
+body.mkm-site .mkm-groupe
+.mkm-groupe__equipe-cta p {
+  max-width: 650px;
+  margin: 0 auto;
+
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Bouton WhatsApp */
+body.mkm-site .mkm-groupe__equipe-cta
+.mkm-btn--whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+
+  width: fit-content;
+  min-height: 44px;
+  padding: 0.7rem 1.4rem;
+
+  background: #119c52;
+  background-image: none;
+  border: 1px solid #119c52;
+  border-radius: 50px;
+  color: #ffffff;
+
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Icône WhatsApp */
+body.mkm-site .mkm-groupe__equipe-cta
+.mkm-btn--whatsapp svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+/* Survol */
+body.mkm-site .mkm-groupe__equipe-cta
+.mkm-btn--whatsapp:hover {
+  background: #087b3d;
+  border-color: #087b3d;
+  color: #ffffff;
+
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(17, 156, 82, 0.2);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  body.mkm-site .mkm-groupe__equipe-cta {
+    margin-top: 1.5rem;
+    gap: 0.9rem;
+  }
+
+  body.mkm-site .mkm-groupe
+  .mkm-groupe__equipe-cta p {
+    font-size: 0.875rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.mkm-site .mkm-groupe__equipe-cta
+  .mkm-btn--whatsapp {
+    transition: none;
+  }
+
+  body.mkm-site .mkm-groupe__equipe-cta
+  .mkm-btn--whatsapp:hover {
+    transform: none;
+  }
+}
+
+
+/* ==========================================
+   LE GROUPE — TYPOGRAPHIE CARTES ÉQUIPE
+========================================== */
+
+/* Bloc identité */
+body.mkm-site .mkm-groupe__membre-identite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
+  min-height: 6.5rem;
+  gap: 0.4rem;
+
+  text-align: center;
+}
+
+/* Noms */
+body.mkm-site .mkm-groupe__membre-identite h4 {
+  max-width: 26ch;
+  margin: 0;
+
+  color: #071b3b;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+
+  text-wrap: balance;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+/* Fonctions */
+body.mkm-site .mkm-groupe__equipe
+.mkm-groupe__membre-fonction {
+  width: 100%;
+  max-width: 30ch;
+  margin: 0 auto;
+
+  color: #536174;
+  font-size: 0.84375rem;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0;
+
+  text-align: center;
+  text-wrap: balance;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+/* Rattachement / pôle */
+body.mkm-site .mkm-groupe__membre-pole {
+  max-width: 95%;
+  margin-top: 0.6rem;
+  padding: 0.4rem 0.7rem;
+
+  color: #957335;
+  background: #f7f3eb;
+  border-radius: 40px;
+
+  font-size: 0.65625rem;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.025em;
+
+  text-align: center;
+  text-wrap: balance;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+/* Courte mention de responsabilité */
+body.mkm-site .mkm-groupe__equipe
+.mkm-groupe__membre-mission {
+  width: 100%;
+  max-width: 32ch;
+  margin: auto auto 0;
+
+  padding-top: 0.85rem;
+
+  color: #687588;
+  font-size: 0.78125rem;
+  font-weight: 400;
+  line-height: 1.65;
+
+  text-align: center;
+  text-wrap: pretty;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1360px) {
+  body.mkm-site .mkm-groupe__membre-identite {
+    min-height: 7rem;
+  }
+
+  body.mkm-site .mkm-groupe__membre-identite h4 {
+    font-size: 0.9375rem;
+  }
+
+  body.mkm-site .mkm-groupe__equipe
+  .mkm-groupe__membre-fonction {
+    font-size: 0.8125rem;
+    max-width: 29ch;
+  }
+}
+
+@media (max-width: 600px) {
+  body.mkm-site .mkm-groupe__membre-identite {
+    min-height: 0;
+  }
+
+  body.mkm-site .mkm-groupe__membre-identite h4 {
+    font-size: 1rem;
+  }
+
+  body.mkm-site .mkm-groupe__equipe
+  .mkm-groupe__membre-fonction {
+    font-size: 0.875rem;
+    max-width: 34ch;
+  }
+}
+
+
+
+/* ==========================================
+   LE GROUPE — ANIMATIONS ÉQUIPE PREMIUM
+========================================== */
+
+/* 1. Apparition progressive au scroll */
+
+body.mkm-site .mkm-team-motion
+.mkm-groupe__membre {
+  opacity: 0;
+  transform: translateY(18px);
+
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+
+  will-change: opacity, transform;
+}
+
+/* Carte devenue visible */
+body.mkm-site .mkm-team-motion
+.mkm-groupe__membre.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 2. Apparition séquentielle par niveau */
+
+body.mkm-site .mkm-team-motion
+.mkm-groupe__membre:nth-child(1) {
+  transition-delay: 0ms;
+}
+
+body.mkm-site .mkm-team-motion
+.mkm-groupe__membre:nth-child(2) {
+  transition-delay: 90ms;
+}
+
+body.mkm-site .mkm-team-motion
+.mkm-groupe__membre:nth-child(3) {
+  transition-delay: 180ms;
+}
+
+body.mkm-site .mkm-team-motion
+.mkm-groupe__membre:nth-child(4) {
+  transition-delay: 270ms;
+}
+
+body.mkm-site .mkm-team-motion
+.mkm-groupe__membre:nth-child(5) {
+  transition-delay: 360ms;
+}
+
+/* 3. Survol : élévation subtile */
+
+body.mkm-site .mkm-groupe__equipe
+.mkm-groupe__membre-carte {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+  body.mkm-site .mkm-groupe__equipe
+  .mkm-groupe__membre-carte:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+      0 12px 28px rgba(7, 27, 59, 0.09);
+
+    border-color: #ded0b5;
+  }
+
+  /* 4. Micro-zoom du portrait */
+
+  body.mkm-site .mkm-groupe__equipe
+  .mkm-groupe__membre-carte:hover
+  img.mkm-groupe__membre-photo {
+    transform: scale(1.02);
+  }
+}
+
+/* Portrait : mouvement fluide */
+body.mkm-site .mkm-groupe__equipe
+img.mkm-groupe__membre-photo {
+  transition: transform 0.4s ease;
+  transform-origin: center center;
+}
+
+/* 5. Accessibilité : mouvements réduits */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body.mkm-site .mkm-team-motion
+  .mkm-groupe__membre {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  body.mkm-site .mkm-groupe__equipe
+  .mkm-groupe__membre-carte,
+  body.mkm-site .mkm-groupe__equipe
+  img.mkm-groupe__membre-photo {
+    transition: none;
+  }
+
+  body.mkm-site .mkm-groupe__equipe
+  .mkm-groupe__membre-carte:hover,
+  body.mkm-site .mkm-groupe__equipe
+  .mkm-groupe__membre-carte:hover
+  img.mkm-groupe__membre-photo {
+    transform: none;
+  }
+}
+
+
+/* ==========================================
+   GROUPE MKM — NOTRE CAP
+   Mission / Vision
+========================================== */
+
+body.mkm-site .mkm-cap {
+  background: var(--mkm-bg);
+}
+
+/* Introduction */
+body.mkm-site .mkm-cap__intro {
+  max-width: 800px;
+  margin: 0 auto 2.25rem;
+  text-align: center;
+}
+
+body.mkm-site .mkm-cap__intro .mkm-eyebrow {
+  justify-content: center;
+  margin-bottom: 0.7rem;
+}
+
+body.mkm-site .mkm-cap__intro h2 {
+  max-width: none;
+  margin: 0 0 0.9rem;
+
+  color: var(--mkm-navy);
+  font-size: clamp(1.65rem, 2.1vw, 2rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+body.mkm-site .mkm-cap__lead {
+  max-width: 68ch;
+  margin: 0 auto;
+
+  color: var(--mkm-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+/* ==========================================
+   GRILLE MISSION / VISION
+========================================== */
+
+body.mkm-site .mkm-cap__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 1.5rem;
+}
+
+/* Carte commune */
+body.mkm-site .mkm-cap__card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: auto;
+  padding: clamp(1.5rem, 2.5vw, 2.25rem);
+
+  border: 1px solid var(--mkm-border);
+  border-radius: 14px;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* Mission : fond clair */
+body.mkm-site .mkm-cap__card--mission {
+  background: #eef3f7;
+  color: var(--mkm-navy);
+}
+
+/* Vision : fond marine */
+body.mkm-site .mkm-cap__card--vision {
+  background: var(--mkm-navy);
+  color: #ffffff;
+  border-color: var(--mkm-navy);
+}
+
+/* ==========================================
+   PICTOGRAMMES
+========================================== */
+
+body.mkm-site .mkm-cap__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1.1rem;
+
+  border-radius: 10px;
+}
+
+body.mkm-site .mkm-cap__icon .mkm-icon {
+  width: 25px;
+  height: 25px;
+  margin: 0;
+  stroke-width: 1.6;
+}
+
+body.mkm-site .mkm-cap__card--mission
+.mkm-cap__icon {
+  background: rgba(7, 27, 59, 0.07);
+  color: var(--mkm-navy);
+}
+
+body.mkm-site .mkm-cap__card--vision
+.mkm-cap__icon {
+  background: rgba(232, 181, 71, 0.12);
+  color: var(--mkm-gold);
+}
+
+/* ==========================================
+   TYPOGRAPHIE DES CARTES
+========================================== */
+
+/* Petit intitulé */
+body.mkm-site .mkm-groupe
+.mkm-cap__label {
+  margin: 0 0 0.6rem;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+body.mkm-site .mkm-cap__card--mission
+.mkm-cap__label {
+  color: var(--mkm-accent-text);
+}
+
+body.mkm-site .mkm-cap__card--vision
+.mkm-cap__label {
+  color: var(--mkm-gold);
+}
+
+/* Titre principal de chaque carte */
+body.mkm-site .mkm-groupe
+.mkm-cap__card h3 {
+  max-width: 27ch;
+  min-height: 2.7em;
+  margin: 0 0 0.85rem;
+
+  font-size: clamp(1.15rem, 1.45vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+body.mkm-site .mkm-cap__card--mission h3 {
+  color: var(--mkm-navy);
+}
+
+body.mkm-site .mkm-cap__card--vision h3 {
+  color: #ffffff;
+}
+
+/* Description */
+body.mkm-site .mkm-groupe
+.mkm-cap__description {
+  max-width: 56ch;
+  margin: 0 0 1.5rem;
+
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+body.mkm-site .mkm-cap__card--mission
+.mkm-cap__description {
+  color: #526174;
+}
+
+body.mkm-site .mkm-cap__card--vision
+.mkm-cap__description {
+  color: #d5e0e8;
+}
+
+/* ==========================================
+   ENGAGEMENTS ET AMBITIONS
+========================================== */
+
+body.mkm-site .mkm-cap__details {
+  margin-top: auto;
+  padding-top: 1.2rem;
+  border-top: 1px solid;
+}
+
+body.mkm-site .mkm-cap__card--mission
+.mkm-cap__details {
+  border-color: #d2dde7;
+}
+
+body.mkm-site .mkm-cap__card--vision
+.mkm-cap__details {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.mkm-site .mkm-groupe
+.mkm-cap__details h4 {
+  margin: 0 0 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+body.mkm-site .mkm-cap__list {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.mkm-site .mkm-cap__list li {
+  position: relative;
+  padding-left: 1.2rem;
+
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+/* Repère doré discret */
+body.mkm-site .mkm-cap__list li::before {
+  content: "";
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mkm-gold);
+}
+
+body.mkm-site .mkm-cap__card--mission
+.mkm-cap__list li::before {
+  background: var(--mkm-gold-deep);
+}
+
+/* ==========================================
+   BANDEAU DES PRINCIPES
+========================================== */
+
+body.mkm-site .mkm-cap__principes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.5rem;
+
+  margin-top: 1.5rem;
+  padding: 1.15rem 1.5rem;
+
+  background: #f7f8fa;
+  border: 1px solid #e8edf2;
+  border-radius: 10px;
+}
+
+body.mkm-site .mkm-cap__principes-title {
+  margin: 0;
+  color: var(--mkm-navy);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+body.mkm-site .mkm-cap__principes-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4rem 0;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.mkm-site .mkm-cap__principes-list li {
+  display: flex;
+  align-items: center;
+  color: var(--mkm-text-muted);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+body.mkm-site .mkm-cap__principes-list
+li + li::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 13px;
+  margin: 0 0.95rem;
+  background: #c9b27e;
+}
+
+/* ==========================================
+   SURVOL DISCRET
+========================================== */
+
+@media (hover: hover) and (pointer: fine) {
+  body.mkm-site .mkm-cap__card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(7, 27, 59, 0.08);
+  }
+}
+
+
+
+/* ==========================================
+   NOTRE CAP — RESPONSIVE
+========================================== */
+
+/* Ordinateurs compacts */
+@media (max-width: 1360px) {
+  body.mkm-site .mkm-cap__intro {
+    margin-bottom: 1.8rem;
+  }
+
+  body.mkm-site .mkm-cap__grid {
+    gap: 1.1rem;
+  }
+
+  body.mkm-site .mkm-cap__card {
+    padding: 1.5rem;
+  }
+
+  body.mkm-site .mkm-groupe
+  .mkm-cap__card h3 {
+    font-size: 1.2rem;
+  }
+
+  body.mkm-site .mkm-groupe
+  .mkm-cap__description {
+    font-size: 0.875rem;
+  }
+}
+
+/* Une seule colonne avant que le texte soit comprimé */
+@media (max-width: 900px) {
+  body.mkm-site .mkm-cap__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  body.mkm-site .mkm-groupe
+  .mkm-cap__card h3 {
+    min-height: 0;
+  }
+
+  body.mkm-site .mkm-cap__principes {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+}
+
+/* Smartphones */
+@media (max-width: 600px) {
+  body.mkm-site .mkm-cap__intro {
+    margin-bottom: 1.5rem;
+  }
+
+  body.mkm-site .mkm-cap__intro h2 {
+    font-size: 1.4rem;
+  }
+
+  body.mkm-site .mkm-cap__lead {
+    font-size: 0.875rem;
+  }
+
+  body.mkm-site .mkm-cap__card {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  body.mkm-site .mkm-cap__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  body.mkm-site .mkm-groupe
+  .mkm-cap__card h3 {
+    font-size: 1.1rem;
+  }
+
+  body.mkm-site .mkm-cap__principes {
+    padding: 1rem;
+  }
+
+  body.mkm-site .mkm-cap__principes-list {
+    row-gap: 0.5rem;
+  }
+
+  body.mkm-site .mkm-cap__principes-list li {
+    font-size: 0.75rem;
+  }
+
+  body.mkm-site .mkm-cap__principes-list
+  li + li::before {
+    margin-inline: 0.6rem;
+  }
+}
+
+/* Préférences d'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  body.mkm-site .mkm-cap__card {
+    transition: none;
+  }
+
+  body.mkm-site .mkm-cap__card:hover {
+    transform: none;
+  }
+}
+
+
+
+/* Notre cap — apparition progressive */
+
+body.mkm-site .mkm-cap--animated
+:is(.mkm-cap__intro, .mkm-cap__card, .mkm-cap__principes) {
+  opacity: 0;
+  transform: translateY(14px);
+
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.mkm-site .mkm-cap--animated
+:is(.mkm-cap__intro, .mkm-cap__card, .mkm-cap__principes).is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Décalage très léger entre les cartes */
+body.mkm-site .mkm-cap--animated
+.mkm-cap__card--vision {
+  transition-delay: 100ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.mkm-site .mkm-cap--animated
+  :is(.mkm-cap__intro, .mkm-cap__card, .mkm-cap__principes) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* ==========================================
+   LE GROUPE — SECTION NOS VALEURS
+========================================== */
+
+body.mkm-site .mkm-valeurs {
+  background: var(--mkm-bg);
+}
+
+/* Composition générale 40 % / 60 % */
+body.mkm-site .mkm-valeurs__layout {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(0, 3fr);
+
+  align-items: stretch;
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+}
+
+/* ==========================================
+   PANNEAU ÉDITORIAL GAUCHE
+========================================== */
+
+body.mkm-site .mkm-valeurs__intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+
+  min-width: 0;
+  padding: clamp(1.5rem, 2.6vw, 2.5rem);
+
+  background: #f1f4f6;
+  border: 1px solid #e8edf1;
+  border-radius: 18px;
+}
+
+/* Sur-titre */
+body.mkm-site .mkm-valeurs__eyebrow {
+  margin: 0 0 1rem;
+
+  color: var(--mkm-accent-text);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+/* Titre */
+body.mkm-site main .mkm-valeurs__intro h2 {
+  max-width: 20ch;
+  margin: 0 0 1rem;
+
+  color: var(--mkm-navy);
+  font-size: clamp(1.55rem, 2vw, 2rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+/* Introduction */
+body.mkm-site .mkm-valeurs__lead {
+  max-width: 42ch;
+  margin: 0;
+
+  color: var(--mkm-text-muted);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+/* Déclaration institutionnelle */
+body.mkm-site .mkm-valeurs__declaration {
+  max-width: 43ch;
+  margin: 0;
+  padding-top: 1.15rem;
+
+  border-top: 1px solid #d7dfe6;
+
+  color: #42566c;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   LISTE DES VALEURS
+========================================== */
+
+body.mkm-site .mkm-valeurs__liste {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Rangée */
+body.mkm-site .mkm-valeurs__item {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 1.1rem;
+
+  min-height: 94px;
+  padding: 0.95rem 0.75rem;
+
+  border-bottom: 1px solid #e3e9ee;
+  border-radius: 8px;
+
+  transition: background-color 0.3s ease;
+}
+
+body.mkm-site .mkm-valeurs__item:last-child {
+  border-bottom: none;
+}
+
+/* ==========================================
+   PICTOGRAMMES
+========================================== */
+
+body.mkm-site .mkm-valeurs__icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+
+  background: #fff8ec;
+  border: 1px solid #f3e8d4;
+  border-radius: 10px;
+
+  color: #ad812e;
+
+  transition: transform 0.3s ease;
+}
+
+body.mkm-site .mkm-valeurs__icone
+.mkm-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+
+  margin: 0;
+  color: inherit;
+  stroke-width: 1.6;
+}
+
+/* ==========================================
+   TEXTES DES VALEURS
+========================================== */
+
+body.mkm-site .mkm-valeurs__contenu {
+  min-width: 0;
+}
+
+/* Intitulés */
+body.mkm-site main .mkm-valeurs__contenu h3 {
+  margin: 0 0 0.3rem;
+
+  color: var(--mkm-navy);
+  font-size: 1.025rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+/* Descriptions */
+body.mkm-site .mkm-valeurs__contenu p {
+  max-width: 52ch;
+  margin: 0;
+
+  color: var(--mkm-text-muted);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+/* ==========================================
+   MICRO-INTERACTIONS
+========================================== */
+
+@media (hover: hover) and (pointer: fine) {
+
+  /* Teinte extrêmement subtile */
+  body.mkm-site .mkm-valeurs__item:hover {
+    background-color: #f8fafb;
+  }
+
+  /* Déplacement horizontal de 2px */
+  body.mkm-site .mkm-valeurs__item:hover
+  .mkm-valeurs__icone {
+    transform: translateX(2px);
+  }
+}
+
+
+
+/* ==========================================
+   NOS VALEURS — APPARITION AU SCROLL
+========================================== */
+
+/* État initial */
+body.mkm-site .mkm-valeurs--animated
+.mkm-valeurs__intro,
+body.mkm-site .mkm-valeurs--animated
+.mkm-valeurs__liste {
+  opacity: 0;
+  transform: translateY(14px);
+
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Légère succession : panneau puis liste */
+body.mkm-site .mkm-valeurs--animated
+.mkm-valeurs__liste {
+  transition-delay: 100ms;
+}
+
+/* État visible */
+body.mkm-site .mkm-valeurs--animated.is-visible
+.mkm-valeurs__intro,
+body.mkm-site .mkm-valeurs--animated.is-visible
+.mkm-valeurs__liste {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  body.mkm-site .mkm-valeurs--animated
+  .mkm-valeurs__intro,
+  body.mkm-site .mkm-valeurs--animated
+  .mkm-valeurs__liste {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  body.mkm-site .mkm-valeurs__item,
+  body.mkm-site .mkm-valeurs__icone {
+    transition: none;
+  }
+
+  body.mkm-site .mkm-valeurs__item:hover
+  .mkm-valeurs__icone {
+    transform: none;
+  }
+}
+
+
+
+/* ==========================================
+   LE GROUPE — TITRES DES 4 ÉTAPES
+========================================== */
+
+/* Grands écrans */
+body.mkm-site .mkm-groupe .mkm-groupe__etapes h3 {
+  font-size: 1.125rem; /* 18px */
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+/* Écrans de 1360px et moins */
+@media (max-width: 1360px) {
+  body.mkm-site .mkm-groupe .mkm-groupe__etapes h3 {
+    font-size: 1rem; /* 16px */
+  }
+}
+
+/* Smartphones */
+@media (max-width: 600px) {
+  body.mkm-site .mkm-groupe .mkm-groupe__etapes h3 {
+    font-size: 0.9375rem; /* 15px */
+  }
+}
+
+
+/* GROUPE MKM — ACCUEIL — NOS EXPERTISES
+   À ajouter à la fin de app/assets/css/typographie-responsive.css
+   S'applique uniquement à .mkm-expertises.
+*/
+
+/* Section plus compacte */
+body.mkm-site .mkm-expertises {
+  padding-block: clamp(3.5rem, 4.2vw, 4.5rem);
+  background: #fff;
+}
+
+body.mkm-site .mkm-expertises .mkm-section__head {
+  margin-bottom: 1.75rem;
+}
+
+body.mkm-site .mkm-expertises .mkm-section__head h2 {
+  margin: 0 0 .6rem;
+  color: var(--mkm-navy);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+
+body.mkm-site .mkm-expertises .mkm-lead {
+  max-width: 65ch;
+  margin: 0;
+  font-size: .96875rem;
+  line-height: 1.55;
+  color: #526174;
+}
+
+/* Grille indépendante des anciens séparateurs quadrillés */
+body.mkm-site .mkm-expertises .mkm-grid--expertises {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 1.125rem;
+}
+
+body.mkm-site .mkm-expertises .mkm-grid--expertises > li {
+  display: flex;
+  min-width: 0;
+  align-items: stretch;
+}
+
+/* Désactiver les séparateurs hérités de layout.css, à tous les breakpoints */
+body.mkm-site .mkm-expertises .mkm-grid--expertises > li::before,
+body.mkm-site .mkm-expertises .mkm-grid--expertises > li::after {
+  content: none;
+  display: none;
+  border: 0;
+}
+
+/* Cartes premium compactes */
+body.mkm-site .mkm-expertises .mkm-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  padding: 1.375rem;
+  background: var(--mkm-white, #fff);
+  border: 1px solid #e3e9f0;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(7, 27, 59, .025);
+  color: var(--mkm-navy);
+  text-align: left;
+  text-decoration: none;
+  transition: transform .3s cubic-bezier(.22, 1, .36, 1),
+              box-shadow .3s ease,
+              border-color .3s ease,
+              background-color .3s ease;
+}
+
+/* Zone du pictogramme : six SVG filaires du même composant */
+body.mkm-site .mkm-expertises .mkm-expertises__icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 52px;
+  height: 50px;
+  flex: 0 0 auto;
+  color: var(--mkm-navy);
+}
+
+body.mkm-site .mkm-expertises .mkm-expertises__icon .mkm-icon {
+  width: 48px;
+  height: 48px;
+  color: inherit;
+  stroke-width: 1.7;
+}
+
+body.mkm-site main .mkm-expertises .mkm-card__title {
+  width: 100%;
+  margin: .8rem 0 .45rem;
+  font-size: 1.25rem; /* 20px */
+  font-weight: 650;
+  line-height: 1.32;
+  letter-spacing: -.015em;
+  color: var(--mkm-navy);
+  text-wrap: balance;
+}
+
+body.mkm-site .mkm-expertises .mkm-card__description {
+  width: 100%;
+  margin: 0;
+  font-size: .9375rem; /* 15px */
+  font-weight: 400;
+  line-height: 1.55;
+  color: #526174;
+  text-wrap: pretty;
+}
+
+body.mkm-site .mkm-expertises .mkm-card__link {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  gap: .4rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  font-size: .84375rem;
+  font-weight: 650;
+  line-height: 1.4;
+  color: var(--mkm-accent-text, #80510a);
+}
+
+body.mkm-site .mkm-expertises .mkm-card__link .mkm-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform .3s ease;
+}
+
+/* Interactions sobres, y compris focus clavier */
+@media (hover: hover) and (pointer: fine) {
+  body.mkm-site .mkm-expertises .mkm-card:hover {
+    transform: translateY(-3px);
+    border-color: #cbb68e;
+    background: #fff;
+    box-shadow: 0 12px 26px rgba(7, 27, 59, .08);
+  }
+
+  body.mkm-site .mkm-expertises .mkm-card:hover .mkm-card__link .mkm-icon {
+    transform: translateX(3px);
+  }
+}
+
+body.mkm-site .mkm-expertises .mkm-card:focus-visible {
+  outline: 3px solid var(--mkm-gold-deep, #a96810);
+  outline-offset: 3px;
+  border-color: #cbb68e;
+  background: #fff;
+  box-shadow: 0 12px 26px rgba(7, 27, 59, .08);
+}
+
+body.mkm-site .mkm-expertises .mkm-card:focus-visible .mkm-card__link .mkm-icon {
+  transform: translateX(3px);
+}
+
+/* Ordinateurs compacts */
+@media (max-width: 1360px) {
+  body.mkm-site .mkm-expertises {
+    padding-block: 3.25rem;
+  }
+
+  body.mkm-site .mkm-expertises .mkm-section__head h2 {
+    font-size: 1.75rem;
+  }
+
+  body.mkm-site .mkm-expertises .mkm-card {
+    padding: 1.2rem;
+  }
+
+  body.mkm-site main .mkm-expertises .mkm-card__title {
+    font-size: 1.125rem;
+  }
+
+  body.mkm-site .mkm-expertises .mkm-card__description {
+    font-size: .90625rem;
+  }
+}
+
+/* Tablettes : deux colonnes */
+@media (max-width: 1152px) {
+  body.mkm-site .mkm-expertises .mkm-grid--expertises {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+/* Téléphones : une colonne, aucune hauteur fixe */
+@media (max-width: 640px) {
+  body.mkm-site .mkm-expertises {
+    padding-block: 2.5rem;
+  }
+
+  body.mkm-site .mkm-expertises .mkm-section__head {
+    margin-bottom: 1.4rem;
+  }
+
+  body.mkm-site .mkm-expertises .mkm-section__head h2 {
+    font-size: 1.375rem;
+  }
+
+  body.mkm-site .mkm-expertises .mkm-lead {
+    font-size: .875rem;
+  }
+
+  body.mkm-site .mkm-expertises .mkm-grid--expertises {
+    grid-template-columns: 1fr;
+    gap: .875rem;
+  }
+
+  body.mkm-site .mkm-expertises .mkm-card {
+    padding: 1.125rem;
+  }
+
+  body.mkm-site .mkm-expertises .mkm-expertises__icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  body.mkm-site .mkm-expertises .mkm-expertises__icon .mkm-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  body.mkm-site main .mkm-expertises .mkm-card__title {
+    margin-top: .65rem;
+    font-size: 1.125rem;
+  }
+
+  body.mkm-site .mkm-expertises .mkm-card__description {
+    font-size: .875rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.mkm-site .mkm-expertises .mkm-card,
+  body.mkm-site .mkm-expertises .mkm-card__link .mkm-icon {
+    transition: none;
+  }
+
+  body.mkm-site .mkm-expertises .mkm-card:hover,
+  body.mkm-site .mkm-expertises .mkm-card__link .mkm-icon {
+    transform: none;
+  }
+}
+
+
+
+/* ==========================================
+   ACCUEIL — PICTOGRAMMES D'ORIGINE
+========================================== */
+
+/* Grands écrans */
+body.mkm-site .mkm-expertises
+.mkm-card img.mkm-card__illustration {
+  display: block;
+  width: 66px;
+  height: 66px;
+  max-width: 100%;
+  flex-shrink: 0;
+
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* Écrans jusqu'à 1360px */
+@media (max-width: 1360px) {
+  body.mkm-site .mkm-expertises
+  .mkm-card img.mkm-card__illustration {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+/* Smartphones */
+@media (max-width: 640px) {
+  body.mkm-site .mkm-expertises
+  .mkm-card img.mkm-card__illustration {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+
+
+/* ==========================================
+   ACCUEIL — HERO À IMAGE UNIQUE
+   Écrans inférieurs à 1360px
+========================================== */
+
+@media (max-width: 1359px) {
+
+  /* Remplacer le collage par une image unique */
+  body.mkm-site .mkm-hero .mkm-collage--groupe {
+    display: block;
+    width: 100%;
+    height: clamp(300px, 35vw, 500px);
+    min-height: 0;
+    aspect-ratio: auto;
+    overflow: hidden;
+  }
+
+  /* Masquer les deux images secondaires */
+  body.mkm-site .mkm-hero
+  .mkm-collage--groupe .mkm-collage__item:nth-child(n+2) {
+    display: none;
+  }
+
+  /* La première photographie occupe tout l'espace */
+  body.mkm-site .mkm-hero
+  .mkm-collage--groupe .mkm-collage__item:first-child {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  body.mkm-site .mkm-hero
+  .mkm-collage--groupe .mkm-collage__item:first-child img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    object-fit: cover;
+  }
+}
+
+/* Tablettes */
+@media (max-width: 896px) {
+  body.mkm-site .mkm-hero .mkm-collage--groupe {
+    height: clamp(280px, 48vw, 420px);
+  }
+}
+
+/* Smartphones */
+@media (max-width: 640px) {
+  body.mkm-site .mkm-hero .mkm-collage--groupe {
+    height: clamp(220px, 56vw, 340px);
+  }
+}
+
+
+/* Groupe MKM — Galerie « Nos réalisations » / accueil
+   Ajouter à la FIN de app/assets/css/typographie-responsive.css,
+   après les anciennes règles .mkm-showcase, ou charger ce fichier en dernier.
+   Ne cible que .mkm-realisations (accueil).
+*/
+
+/* Section et en-tête */
+body.mkm-site .mkm-realisations {
+  padding-block: clamp(3rem, 4.5vw, 4.5rem);
+}
+body.mkm-site .mkm-realisations .mkm-realisations__head {
+  align-items: end;
+  gap: 1.25rem;
+  margin-bottom: clamp(1.5rem, 2.3vw, 2rem);
+}
+body.mkm-site .mkm-realisations #titre-realisations {
+  max-width: 34ch;
+  margin-bottom: .65rem;
+  font-size: clamp(1.65rem, 2.1vw, 2rem);
+  line-height: 1.25;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+body.mkm-site .mkm-realisations .mkm-section__head .mkm-lead {
+  max-width: 66ch;
+  font-size: .9375rem;
+  line-height: 1.55;
+}
+
+/* Grille 65/35 environ et hauteur maîtrisée sur ordinateur */
+body.mkm-site .mkm-realisations .mkm-showcase {
+  --mkm-showcase-gap: clamp(16px, 1.25vw, 20px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: var(--mkm-showcase-gap);
+  width: 100%;
+  height: clamp(520px, 40vw, 580px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body.mkm-site .mkm-realisations .mkm-showcase > li {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+}
+body.mkm-site .mkm-realisations .mkm-showcase > li:first-child {
+  grid-row: 1 / -1;
+}
+body.mkm-site .mkm-realisations .mkm-showcase > li .mkm-showcase__card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: auto;
+  overflow: hidden;
+  border-radius: 14px;
+  color: #fff;
+  text-decoration: none;
+  outline-offset: 3px;
+}
+
+/* Photographies : cadrage indépendant pour chaque carte */
+body.mkm-site .mkm-realisations .mkm-showcase__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform .48s cubic-bezier(.2,.8,.2,1);
+}
+/* Pour travaux.jpeg : moins de ciel, plus de voirie et de compacteur */
+body.mkm-site .mkm-realisations .mkm-showcase > li:nth-child(1) .mkm-showcase__media {
+  object-position: center 76%;
+}
+body.mkm-site .mkm-realisations .mkm-showcase > li:nth-child(2) .mkm-showcase__media {
+  object-position: center 42%;
+}
+body.mkm-site .mkm-realisations .mkm-showcase > li:nth-child(3) .mkm-showcase__media {
+  object-position: center 46%;
+}
+
+/* Dégradé progressif sous les textes ; photo bien visible au-dessus */
+body.mkm-site .mkm-realisations .mkm-showcase__card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  height: auto;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(3, 21, 37, .96) 0%,
+    rgba(3, 21, 37, .85) 19%,
+    rgba(3, 21, 37, .42) 42%,
+    rgba(3, 21, 37, .08) 69%,
+    transparent 84%
+  );
+}
+body.mkm-site .mkm-realisations .mkm-showcase__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(3, 21, 37, .07);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .45s ease;
+}
+
+/* Hiérarchie et espacement internes — PAS de grille secondaire */
+body.mkm-site .mkm-realisations .mkm-showcase .mkm-showcase__body,
+body.mkm-site .mkm-realisations .mkm-showcase > li:not(.mkm-showcase__item--lead) .mkm-showcase__body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: .35rem;
+  width: 100%;
+  min-width: 0;
+  padding: clamp(1rem, 1.6vw, 1.5rem);
+  line-height: 1.35;
+}
+body.mkm-site .mkm-realisations .mkm-showcase__item--lead .mkm-showcase__body {
+  max-width: 670px;
+}
+body.mkm-site .mkm-realisations .mkm-showcase__activity {
+  margin: 0 0 .2rem;
+  color: var(--mkm-gold-light, #ffdb82);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+body.mkm-site .mkm-realisations .mkm-showcase__title {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.12rem, 1.4vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+body.mkm-site .mkm-realisations .mkm-showcase > li:not(.mkm-showcase__item--lead) .mkm-showcase__title {
+  font-size: clamp(1rem, 1.1vw, 1.2rem);
+  line-height: 1.35;
+}
+body.mkm-site .mkm-realisations .mkm-showcase__text {
+  margin: .25rem 0 0;
+  color: #e5edf3;
+  font-size: .9rem;
+  line-height: 1.55;
+}
+body.mkm-site .mkm-realisations .mkm-showcase__link {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: .4rem;
+  margin-top: .65rem;
+  color: var(--mkm-gold-light, #ffdb82);
+  font-size: .82rem;
+  font-weight: 650;
+  line-height: 1.45;
+  text-decoration: underline;
+  text-decoration-color: rgba(255,219,130,.5);
+  text-underline-offset: .2em;
+}
+body.mkm-site .mkm-realisations .mkm-showcase__link .mkm-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform .3s ease;
+}
+
+/* Actions souris / clavier : zoom 3,5% et ombrage très léger */
+@media (hover: hover) and (pointer: fine) {
+  body.mkm-site .mkm-realisations .mkm-showcase__card:hover .mkm-showcase__media {
+    transform: scale(1.035);
+  }
+  body.mkm-site .mkm-realisations .mkm-showcase__card:hover::before {
+    opacity: 1;
+  }
+  body.mkm-site .mkm-realisations .mkm-showcase__card:hover .mkm-showcase__link .mkm-icon {
+    transform: translateX(3px);
+  }
+}
+body.mkm-site .mkm-realisations .mkm-showcase__card:focus-visible {
+  outline: 3px solid var(--mkm-gold-deep, #a96810);
+}
+body.mkm-site .mkm-realisations .mkm-showcase__card:focus-visible .mkm-showcase__link .mkm-icon {
+  transform: translateX(3px);
+}
+
+/* Tablette / petit ordinateur : grande carte, puis 2 vues secondaires */
+@media (max-width: 1100px) {
+  body.mkm-site .mkm-realisations .mkm-showcase {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    height: auto;
+    gap: 16px;
+  }
+  body.mkm-site .mkm-realisations .mkm-showcase > li:first-child {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+  body.mkm-site .mkm-realisations .mkm-showcase > li:first-child .mkm-showcase__card {
+    height: clamp(360px, 43vw, 460px);
+  }
+  body.mkm-site .mkm-realisations .mkm-showcase > li:not(:first-child) .mkm-showcase__card {
+    height: clamp(250px, 27vw, 310px);
+  }
+}
+
+/* Smartphone et petite tablette : 3 cartes superposées */
+@media (max-width: 720px) {
+  body.mkm-site .mkm-realisations .mkm-realisations__head {
+    align-items: flex-start;
+  }
+  body.mkm-site .mkm-realisations .mkm-showcase {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    gap: 14px;
+    height: auto;
+  }
+  body.mkm-site .mkm-realisations .mkm-showcase > li:first-child {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  body.mkm-site .mkm-realisations .mkm-showcase > li:first-child .mkm-showcase__card {
+    height: clamp(320px, 75vw, 430px);
+  }
+  body.mkm-site .mkm-realisations .mkm-showcase > li:not(:first-child) .mkm-showcase__card {
+    height: clamp(230px, 53vw, 290px);
+  }
+  body.mkm-site .mkm-realisations .mkm-showcase .mkm-showcase__body {
+    padding: 1rem;
+  }
+  body.mkm-site .mkm-realisations .mkm-showcase__title {
+    font-size: 1.12rem;
+  }
+  body.mkm-site .mkm-realisations .mkm-showcase > li:not(.mkm-showcase__item--lead) .mkm-showcase__title {
+    font-size: 1.05rem;
+  }
+  body.mkm-site .mkm-realisations .mkm-showcase__text {
+    font-size: .86rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.mkm-site .mkm-realisations .mkm-showcase__media,
+  body.mkm-site .mkm-realisations .mkm-showcase__card::before,
+  body.mkm-site .mkm-realisations .mkm-showcase__link .mkm-icon {
+    transition: none;
+    transform: none;
+  }
+}
+
+
+/* ==========================================
+   ACCUEIL — STATISTIQUES PLUS COMPACTES
+========================================== */
+
+/* Réduire la hauteur globale */
+body.mkm-site .mkm-stats {
+  padding-block: 3rem; /* 48px */
+}
+
+/* Rapprocher le surtitre et le titre */
+body.mkm-site .mkm-stats .mkm-eyebrow {
+  margin-bottom: 0.45rem;
+}
+
+/* Réduire l'espace sous le titre principal */
+body.mkm-site .mkm-stats h2 {
+  margin-bottom: 1.75rem;
+}
+
+/* Réduire les espacements entre statistiques */
+body.mkm-site .mkm-stats__list {
+  gap: 1.5rem 1.25rem;
+}
+
+/* Rapprocher les libellés des chiffres */
+body.mkm-site .mkm-stats__label {
+  margin-top: 0.4rem;
+}
+
+/* Écrans de 1360px et moins */
+@media (max-width: 1360px) {
+  body.mkm-site .mkm-stats {
+    padding-block: 2.5rem;
+  }
+
+  body.mkm-site .mkm-stats h2 {
+    margin-bottom: 1.4rem;
+  }
+}
+
+/* Smartphones */
+@media (max-width: 600px) {
+  body.mkm-site .mkm-stats {
+    padding-block: 2rem;
+  }
+
+  body.mkm-site .mkm-stats h2 {
+    margin-bottom: 1.25rem;
+  }
+
+  body.mkm-site .mkm-stats__list {
+    gap: 1.35rem 0.75rem;
+  }
+}
+
+
+/* ==========================================
+   GROUPE MKM — PAGE CONTACT
+   Ajustements typographiques et espacements
+========================================== */
+
+/* 1. HERO : éloigner le texte de la bordure */
+body.mkm-site .mkm-contact-hero
+:is(
+  .mkm-contact-hero__contenu,
+  .mkm-contact-hero__content,
+  .mkm-contact-hero__copy,
+  .mkm-contact-hero__texte
+) {
+  padding-left: clamp(1.5rem, 3vw, 3rem);
+  padding-right: 1rem;
+  box-sizing: border-box;
+}
+
+/* 2. TITRES DES QUATRE BLOCS APRÈS LE HERO */
+body.mkm-site main .mkm-contact-engagement h3,
+body.mkm-site main .mkm-contact-engagement strong {
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+/* Descriptions des engagements */
+body.mkm-site .mkm-contact-engagement p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+/* 3. NOS COORDONNÉES / NOTRE GÉOLOCALISATION */
+body.mkm-site main .mkm-contact-carte h2,
+body.mkm-site main .mkm-contact-assistance__entete h2,
+body.mkm-site main #titre-coordonnees,
+body.mkm-site main #titre-geolocalisation {
+  font-size: 1.375rem; /* 22px */
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+/* 4. LABELS : téléphone, email, adresse, horaires */
+body.mkm-site .mkm-contact-detail
+:is(
+  strong,
+  .mkm-contact-detail__label,
+  .mkm-contact-detail__titre,
+  h3
+) {
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+/* Valeurs affichées sous les labels */
+body.mkm-site .mkm-contact-detail
+:is(a, address, p) {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.55;
+}
+
+/* 5. TITRES DES CARTES D'ASSISTANCE
+   Échanger sur WhatsApp, appeler, écrire... */
+body.mkm-site main .mkm-contact-assistance__carte h3,
+body.mkm-site main .mkm-contact-assistance__carte strong {
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+/* Descriptions des cartes */
+body.mkm-site .mkm-contact-assistance__carte p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+/* ==========================================
+   ÉCRANS JUSQU'À 1360PX
+========================================== */
+
+@media (max-width: 1360px) {
+
+  body.mkm-site main .mkm-contact-carte h2,
+  body.mkm-site main .mkm-contact-assistance__entete h2,
+  body.mkm-site main #titre-coordonnees,
+  body.mkm-site main #titre-geolocalisation {
+    font-size: 1.25rem; /* 20px */
+  }
+
+  body.mkm-site main .mkm-contact-engagement h3,
+  body.mkm-site main .mkm-contact-engagement strong,
+  body.mkm-site main .mkm-contact-assistance__carte h3,
+  body.mkm-site main .mkm-contact-assistance__carte strong {
+    font-size: 0.875rem; /* 14px */
+  }
+}
+
+/* ==========================================
+   SMARTPHONES
+========================================== */
+
+@media (max-width: 600px) {
+
+  body.mkm-site .mkm-contact-hero
+  :is(
+    .mkm-contact-hero__contenu,
+    .mkm-contact-hero__content,
+    .mkm-contact-hero__copy,
+    .mkm-contact-hero__texte
+  ) {
+    padding-inline: 0.75rem;
+  }
+
+  body.mkm-site main .mkm-contact-carte h2,
+  body.mkm-site main .mkm-contact-assistance__entete h2,
+  body.mkm-site main #titre-coordonnees,
+  body.mkm-site main #titre-geolocalisation {
+    font-size: 1.125rem; /* 18px */
+  }
+
+  body.mkm-site .mkm-contact-detail
+  :is(strong, .mkm-contact-detail__label, h3) {
+    font-size: 0.78125rem; /* 12.5px */
+  }
+}
+
+
+
+/* PAGE CONTACT — BOUTON WHATSAPP DU SLIDER */
+
+body.mkm-site .mkm-contact-btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+
+  width: fit-content;
+  min-height: 44px;
+  padding: 0.65rem 1.25rem;
+
+  background: #119c52;
+  background-image: none;
+  border: 1px solid #119c52;
+  border-radius: 50px;
+
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+body.mkm-site .mkm-contact-btn-whatsapp svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+body.mkm-site .mkm-contact-btn-whatsapp:hover {
+  background: #087b3d;
+  border-color: #087b3d;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(17, 156, 82, 0.2);
+}
+
+body.mkm-site .mkm-contact-btn-whatsapp:focus-visible {
+  outline: 3px solid #071b3b;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.mkm-site .mkm-contact-btn-whatsapp {
+    transition: none;
+  }
+
+  body.mkm-site .mkm-contact-btn-whatsapp:hover {
+    transform: none;
+  }
+}
+
+
+/* ==========================================
+   GROUPE MKM — FOOTER SANS NEWSLETTER
+========================================== */
+
+/* Grand écran : 4 colonnes */
+body.mkm-site .mkm-footer__grid {
+  grid-template-columns:
+    minmax(0, 1.35fr)
+    minmax(0, 0.8fr)
+    minmax(0, 1.15fr)
+    minmax(0, 1.15fr);
+
+  column-gap: 2rem;
+  row-gap: 2rem;
+}
+
+/* Ordinateurs compacts et tablettes */
+@media (max-width: 1152px) {
+  body.mkm-site .mkm-footer__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 1.5rem;
+  }
+
+  body.mkm-site .mkm-footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Smartphones */
+@media (max-width: 640px) {
+  body.mkm-site .mkm-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  body.mkm-site .mkm-footer__brand {
+    grid-column: auto;
+  }
+}
+
+/* ================================================
+   GROUPE MKM — FOOTER PREMIUM
+   À charger après layout.css et les correctifs existants.
+   Aucun style des autres sections n'est modifié.
+   ================================================ */
+
+   body.mkm-site .mkm-footer {
+    padding-block: 3.75rem 1.5rem;
+    background: var(--mkm-night, #031525);
+    color: #fff;
+    border-top: 1px solid rgba(232, 181, 71, .34);
+  }
+  
+  /* 4 colonnes : identité, navigation, 6 expertises, contacts */
+  body.mkm-site .mkm-footer__grid {
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1.35fr)
+      minmax(0, .78fr)
+      minmax(0, 1.35fr)
+      minmax(0, 1.22fr);
+    gap: 2rem clamp(2rem, 2.5vw, 3rem);
+    align-items: start;
+  }
+  
+  body.mkm-site .mkm-footer__grid > * { min-width: 0; }
+  
+  body.mkm-site .mkm-footer__brand { grid-column: auto; }
+  
+  body.mkm-site .mkm-footer__logo { width: 11rem; max-width: 100%; }
+  body.mkm-site .mkm-footer__logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  body.mkm-site .mkm-footer__text {
+    max-width: 33ch;
+    margin-top: 1rem;
+    color: #d5dee6;
+    font-size: .9375rem;
+    line-height: 1.62;
+  }
+  
+  body.mkm-site .mkm-footer__title {
+    margin: 0 0 1.35rem;
+    color: #fff;
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  
+  body.mkm-site .mkm-footer__links {
+    display: grid;
+    gap: .75rem;
+  }
+  
+  body.mkm-site .mkm-footer__links a,
+  body.mkm-site .mkm-footer__contact a {
+    color: #e8eef5;
+    font-size: .9375rem;
+    font-weight: 400;
+    line-height: 1.55;
+    text-decoration: none;
+    transition: color .25s ease;
+  }
+  
+  body.mkm-site .mkm-footer__links a:hover,
+  body.mkm-site .mkm-footer__contact a:hover,
+  body.mkm-site .mkm-footer__legal a:hover {
+    color: var(--mkm-gold-light, #ffdb82);
+  }
+  
+  body.mkm-site .mkm-footer__services li {
+    padding-inline-start: .85rem;
+  }
+  body.mkm-site .mkm-footer__services li::before {
+    top: .62em;
+    width: .3rem;
+    height: .3rem;
+  }
+  
+  body.mkm-site .mkm-footer__contact {
+    display: grid;
+    gap: .8rem;
+  }
+  
+  body.mkm-site .mkm-footer__contact a,
+  body.mkm-site .mkm-footer__address {
+    gap: .75rem;
+    overflow-wrap: anywhere;
+  }
+  
+  body.mkm-site .mkm-footer__contact .mkm-icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    margin-top: .2rem;
+    color: var(--mkm-gold, #e8b547);
+  }
+  
+  body.mkm-site .mkm-footer__address {
+    color: #d5dee6;
+    font-size: .9375rem;
+    line-height: 1.6;
+  }
+  
+  /* Réseaux sociaux : uniquement des logos blancs monochromes */
+  body.mkm-site .mkm-footer__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .625rem;
+    margin-top: 1.35rem;
+  }
+  
+  body.mkm-site .mkm-footer__social li,
+  body.mkm-site .mkm-footer__social-link {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+  }
+  
+  body.mkm-site .mkm-footer__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border: 1px solid #42536a;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .035);
+    text-decoration: none;
+    transition: color .25s ease, border-color .25s ease, background-color .25s ease;
+  }
+  
+  body.mkm-site .mkm-footer__social-link svg {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+  }
+  
+  body.mkm-site .mkm-footer__social-link:hover {
+    color: var(--mkm-gold-light, #ffdb82);
+    border-color: var(--mkm-gold, #e8b547);
+    background: rgba(232, 181, 71, .07);
+  }
+  
+  /* Focus accessible au clavier */
+  body.mkm-site .mkm-footer a:focus-visible {
+    outline: 2px solid var(--mkm-gold-light, #ffdb82);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+  body.mkm-site .mkm-footer__social-link:focus-visible { border-radius: 10px; }
+  
+  /* Bandeau légal */
+  body.mkm-site .mkm-footer__legal {
+    margin-top: 2.4rem;
+    padding-top: 1.15rem;
+    border-top: 1px solid rgba(255, 255, 255, .2);
+    color: #d5dee6;
+    font-size: .8125rem;
+    line-height: 1.55;
+  }
+  
+  /* Tablette : 2 x 2 colonnes */
+  @media (max-width: 1100px) {
+    body.mkm-site .mkm-footer {
+      padding-block: 3rem 1.35rem;
+    }
+    body.mkm-site .mkm-footer__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem 1.8rem;
+    }
+    body.mkm-site .mkm-footer__brand { grid-column: auto; }
+  }
+  
+  /* Mobile : une seule colonne */
+  @media (max-width: 640px) {
+    body.mkm-site .mkm-footer {
+      padding-block: 2.5rem 1.25rem;
+    }
+    body.mkm-site .mkm-footer__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.9rem;
+    }
+    body.mkm-site .mkm-footer__title { margin-bottom: 1rem; }
+    body.mkm-site .mkm-footer__links { gap: .65rem; }
+    body.mkm-site .mkm-footer__legal {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: .6rem;
+      margin-top: 2rem;
+    }
+    body.mkm-site .mkm-footer__legal nav {
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    body.mkm-site .mkm-footer a,
+    body.mkm-site .mkm-footer__social-link {
+      transition: none;
+    }
+  }
+
+  
+  
+/* TikTok — même présentation que les autres réseaux */
+
+body.mkm-site .mkm-footer__social-link--inactive {
+  cursor: default;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+
+/* LE GROUPE — CTA WHATSAPP FINAL */
+
+body.mkm-site .mkm-groupe__cta
+.mkm-groupe__cta-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+
+  width: fit-content;
+  min-height: 44px;
+  padding: 0.65rem 1.25rem;
+
+  background: #119c52;
+  background-image: none;
+  border: 1px solid #119c52;
+  border-radius: 50px;
+
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+body.mkm-site .mkm-groupe__cta-whatsapp svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+body.mkm-site .mkm-groupe__cta
+.mkm-groupe__cta-whatsapp:hover {
+  background: #087b3d;
+  border-color: #087b3d;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+body.mkm-site .mkm-groupe__cta-whatsapp:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.mkm-site .mkm-groupe__cta-whatsapp {
+    transition: none;
+  }
+
+  body.mkm-site .mkm-groupe__cta-whatsapp:hover {
+    transform: none;
+  }
+}
+
+
+/* LE GROUPE — WHATSAPP DU HERO */
+
+body.mkm-site .mkm-groupe__hero-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+
+  width: fit-content;
+  min-height: 44px;
+  padding: 0.65rem 1.25rem;
+
+  background: #119c52;
+  background-image: none;
+  border: 1px solid #119c52;
+  border-radius: 50px;
+
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: background-color 0.25s ease,
+              transform 0.25s ease;
+}
+
+body.mkm-site .mkm-groupe__hero-whatsapp svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+body.mkm-site .mkm-groupe__hero-whatsapp:hover {
+  background: #087b3d;
+  border-color: #087b3d;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+body.mkm-site .mkm-groupe__hero-whatsapp:focus-visible {
+  outline: 3px solid #071b3b;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.mkm-site .mkm-groupe__hero-whatsapp {
+    transition: none;
+  }
+
+  body.mkm-site .mkm-groupe__hero-whatsapp:hover {
+    transform: none;
+  }
+}
+
+
+
+/* ==========================================
+   PAGE LOCATION D'ENGINS — HERO COMPACT
+========================================== */
+
+/* Réduire l'espace vertical du hero */
+body.mkm-site .mkm-engin-hero {
+  padding-block: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+
+/* Donner plus d'espace au contenu de gauche */
+body.mkm-site .mkm-engin-hero__grid {
+  grid-template-columns:
+    minmax(0, 0.85fr)
+    minmax(0, 1.35fr);
+
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+  align-items: center;
+}
+
+/* Réduire la hauteur de la photographie */
+body.mkm-site .mkm-engin-hero__scene {
+  min-height: 34rem; /* 544px au lieu de 736px */
+}
+
+/* Disposer les trois atouts sur une seule ligne */
+body.mkm-site .mkm-engin-hero__atouts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0;
+}
+
+/* Centrer les pictogrammes et les textes */
+body.mkm-site .mkm-engin-hero__atouts li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: auto;
+  min-width: 0;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+/* Dimensions légèrement réduites */
+body.mkm-site .mkm-engin-hero__atouts .mkm-icon {
+  width: 1.65rem;
+  height: 1.65rem;
+  flex-shrink: 0;
+}
+
+/* Libellés compacts */
+body.mkm-site .mkm-engin-hero__atouts span {
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  overflow-wrap: break-word;
+}
+
+/* ==========================================
+   ÉCRANS INTERMÉDIAIRES
+========================================== */
+
+@media (max-width: 1360px) and (min-width: 1025px) {
+  body.mkm-site .mkm-engin-hero__scene {
+    min-height: 30rem; /* 480px */
+  }
+
+  body.mkm-site .mkm-engin-hero__atouts {
+    gap: 0.5rem;
+  }
+}
+
+/* ==========================================
+   TABLETTES ET SMARTPHONES
+========================================== */
+
+@media (max-width: 1024px) {
+  body.mkm-site .mkm-engin-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  body.mkm-site .mkm-engin-hero__scene {
+    min-height: 0;
+  }
+
+  body.mkm-site .mkm-engin-hero__photo {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+
+  body.mkm-site .mkm-engin-hero__atouts {
+    max-width: 32rem;
+  }
+}
+
+@media (max-width: 600px) {
+  body.mkm-site .mkm-engin-hero {
+    padding-block: 1.25rem;
+  }
+
+  body.mkm-site .mkm-engin-hero__atouts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem;
+    margin-top: 1.25rem;
+  }
+
+  body.mkm-site .mkm-engin-hero__atouts span {
+    font-size: 0.625rem;
+    letter-spacing: 0;
+  }
+
+  body.mkm-site .mkm-engin-hero__atouts .mkm-icon {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+}
+
+
+
+/* ==========================================
+   LOCATION D'ENGINS — SIX CATÉGORIES
+========================================== */
+
+/* Six illustrations sur une ligne */
+body.mkm-site .mkm-engin-categories__liste {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+  align-items: start;
+}
+
+/* Structure de chaque catégorie */
+body.mkm-site .mkm-engin-categories__liste li {
+  min-width: 0;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+/* Illustrations */
+body.mkm-site .mkm-engin-categories__liste img {
+  width: 100%;
+  height: clamp(7rem, 10vw, 9rem);
+  object-fit: contain;
+}
+
+/* Titres */
+body.mkm-site .mkm-engin-categories__liste strong {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+}
+
+/* Descriptions grises sur deux lignes */
+body.mkm-site .mkm-engin-categories__description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+
+  width: 100%;
+  max-width: 13rem;
+  margin: 0 auto;
+  min-height: 2.9em;
+  overflow: hidden;
+
+  color: #8793a2;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+/* Tablettes */
+@media (max-width: 1152px) {
+  body.mkm-site .mkm-engin-categories__liste {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem 1rem;
+  }
+}
+
+/* Smartphones */
+@media (max-width: 640px) {
+  body.mkm-site .mkm-engin-categories__liste {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 0.75rem;
+  }
+
+  body.mkm-site .mkm-engin-categories__liste img {
+    height: 7rem;
+  }
+
+  body.mkm-site .mkm-engin-categories__description {
+    font-size: 0.71875rem;
+  }
+}
+
+
+/* FICHE ENGIN — SANS FORMULAIRE */
+
+body.mkm-site .mkm-engin-fiche__bilan {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+body.mkm-site .mkm-engin-fiche__tableau {
+  width: 100%;
+}
+
+/* Bouton WhatsApp */
+body.mkm-site .mkm-engin-fiche__whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 44px;
+  padding: 0.65rem 1.25rem;
+  background: #119c52;
+  border: 1px solid #119c52;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+body.mkm-site .mkm-engin-fiche__whatsapp:hover {
+  background: #087b3d;
+  border-color: #087b3d;
+  color: #fff;
+}
+
+body.mkm-site .mkm-engin-fiche__whatsapp svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+body.mkm-site .mkm-engin-fiche__whatsapp:focus-visible {
+  outline: 3px solid #071b3b;
+  outline-offset: 3px;
+}
+
+
+/* ============================================================
+   GROUPE MKM — FICHES DÉTAILLÉES DES ENGINS (premium)
+   Ajouter à la FIN de app/assets/css/typographie-responsive.css
+   Périmètre : .mkm-engin-fiche exclusivement
+   Compatible avec la fiche sans formulaire et avec CTA WhatsApp.
+   ============================================================ */
+
+/* 1. Espacements des deux sections */
+body.mkm-site .mkm-section.mkm-engin-fiche:not(.mkm-section--divided) {
+  padding-block: clamp(3rem, 3.6vw, 4rem) clamp(3.5rem, 4vw, 4.75rem);
+}
+
+body.mkm-site .mkm-section.mkm-engin-fiche.mkm-section--divided {
+  padding-block: clamp(3.5rem, 4vw, 4.75rem) clamp(3.5rem, 4vw, 4.75rem);
+}
+
+/* 2. Fil de retour */
+body.mkm-site .mkm-engin-fiche__retour {
+  margin-bottom: 1.35rem;
+  color: #906b26;
+  font-size: .75rem;
+  font-weight: 650;
+  letter-spacing: .085em;
+  line-height: 1.4;
+}
+body.mkm-site .mkm-engin-fiche__retour:focus-visible {
+  outline: 2px solid #ba913e;
+  outline-offset: 5px;
+  border-radius: 2px;
+}
+
+/* 3. Composition 52/48 et cadrage photo */
+body.mkm-site .mkm-engin-fiche__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(2rem, 2.7vw, 2.5rem);
+}
+body.mkm-site .mkm-engin-fiche__intro > * {
+  min-width: 0;
+}
+body.mkm-site .mkm-engin-fiche__intro > img {
+  display: block;
+  width: 100%;
+  height: clamp(25rem, 35vw, 32.5rem);
+  max-height: 520px;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid #e4eaf0;
+  border-radius: 14px;
+  background: #edf1f4;
+  box-shadow: 0 9px 26px rgba(7, 27, 59, .07);
+}
+
+/* 4. Typographie et respiration du contenu */
+body.mkm-site .mkm-engin-fiche h1 {
+  margin: 0 0 1rem;
+  max-width: 18ch;
+  color: #071b3b;
+  font-size: clamp(2.25rem, 2rem + .7vw, 2.625rem);
+  font-weight: 700;
+  letter-spacing: -.025em;
+  line-height: 1.13;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+body.mkm-site .mkm-engin-fiche__intro > div > p {
+  margin: 0;
+  color: #526174;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.62;
+}
+body.mkm-site .mkm-engin-fiche h2 {
+  margin: 0 0 1rem;
+  color: #071b3b;
+  font-size: clamp(1.5rem, 1.4rem + .35vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -.015em;
+  line-height: 1.23;
+  text-transform: none;
+}
+
+/* 5. Trois chiffres clés existants, en cartes légères */
+body.mkm-site .mkm-engin-fiche__apercus {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .65rem;
+  margin: 1.6rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+body.mkm-site .mkm-engin-fiche__apercus li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  min-width: 0;
+  min-height: 58px;
+  padding: .65rem .5rem;
+  border: 1px solid #e7ebf0;
+  border-radius: 10px;
+  background: #f5f7f9;
+  color: #071b3b;
+  font-size: clamp(.78rem, .7rem + .2vw, .9rem);
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+body.mkm-site .mkm-engin-fiche__apercus li span {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+body.mkm-site .mkm-engin-fiche__apercus .mkm-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex: 0 0 auto;
+  color: #b28a3f;
+  stroke-width: 1.8;
+}
+
+/* 6. Travaux adaptés : lignes resserrées */
+body.mkm-site .mkm-engin-fiche__intro h2 {
+  margin-top: clamp(1.7rem, 2vw, 2rem);
+  margin-bottom: .65rem;
+}
+body.mkm-site .mkm-engin-fiche__travaux {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body.mkm-site .mkm-engin-fiche__travaux li {
+  padding: .56rem 0;
+  border-bottom: 1px solid #e7ecf1;
+  color: #233b59;
+  font-size: .9375rem;
+  font-weight: 450;
+  line-height: 1.4;
+}
+body.mkm-site .mkm-engin-fiche__travaux li:last-child {
+  border-bottom: 0;
+}
+body.mkm-site .mkm-engin-fiche__intro .mkm-actions {
+  margin-top: 1.25rem;
+}
+
+/* 7. CTA WhatsApp existant (conserver :href="contacts.whatsappHref") */
+body.mkm-site .mkm-engin-fiche .mkm-engin-fiche__whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  min-height: 44px;
+  width: auto;
+  padding: .67rem 1.25rem;
+  border: 1px solid #119c52;
+  border-radius: 999px;
+  background: #119c52;
+  background-image: none;
+  box-shadow: none;
+  color: #fff;
+  font-size: .875rem;
+  font-weight: 650;
+  line-height: 1.25;
+  text-decoration: none;
+  transition: background-color .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+body.mkm-site .mkm-engin-fiche .mkm-engin-fiche__whatsapp:hover {
+  border-color: #087b3d;
+  background: #087b3d;
+  color: #fff;
+  box-shadow: 0 5px 14px rgba(17, 156, 82, .15);
+}
+body.mkm-site .mkm-engin-fiche .mkm-engin-fiche__whatsapp:focus-visible {
+  outline: 3px solid #071b3b;
+  outline-offset: 3px;
+}
+body.mkm-site .mkm-engin-fiche .mkm-engin-fiche__whatsapp svg {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+}
+
+/* 8. Caractéristiques sans formulaire : largeur équilibrée */
+body.mkm-site .mkm-engin-fiche__bilan {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 1100px;
+  margin-inline: auto;
+  gap: 0;
+}
+body.mkm-site .mkm-engin-fiche__bilan > div {
+  min-width: 0;
+}
+body.mkm-site .mkm-engin-fiche__bilan h2 {
+  margin-bottom: 1.4rem;
+}
+
+/* 9. Tableau premium : conserver TOUTES les lignes et valeurs */
+body.mkm-site .mkm-engin-fiche__tableau {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e0e6ec;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 5px 22px rgba(7, 27, 59, .045);
+}
+body.mkm-site .mkm-engin-fiche__tableau table {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+body.mkm-site .mkm-engin-fiche__tableau th,
+body.mkm-site .mkm-engin-fiche__tableau td {
+  padding: .88rem 1.2rem;
+  border: 0;
+  border-bottom: 1px solid #e9edf2;
+  font-size: .9375rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: left;
+  vertical-align: middle;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+body.mkm-site .mkm-engin-fiche__tableau thead th {
+  padding-block: .94rem;
+  background: #071b3b;
+  border-bottom-color: #071b3b;
+  color: #fff;
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .045em;
+  text-transform: uppercase;
+}
+body.mkm-site .mkm-engin-fiche__tableau tbody th {
+  width: 44%;
+  background: #fff;
+  color: #526174;
+  font-weight: 550;
+}
+body.mkm-site .mkm-engin-fiche__tableau tbody td {
+  background: #fff;
+  color: #071b3b;
+  font-weight: 650;
+}
+body.mkm-site .mkm-engin-fiche__tableau tbody tr:nth-child(even) th,
+body.mkm-site .mkm-engin-fiche__tableau tbody tr:nth-child(even) td {
+  background: #f6f8fa;
+}
+body.mkm-site .mkm-engin-fiche__tableau tbody tr:last-child th,
+body.mkm-site .mkm-engin-fiche__tableau tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* 10. Note et source constructeur */
+body.mkm-site .mkm-engin-fiche .mkm-engin-fiche__note,
+body.mkm-site .mkm-engin-fiche .mkm-engin-fiche__source {
+  max-width: 92ch;
+  margin: 1rem 0 0;
+  color: #607087;
+  font-size: .84375rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+body.mkm-site .mkm-engin-fiche .mkm-engin-fiche__source {
+  margin-top: .45rem;
+}
+body.mkm-site .mkm-engin-fiche__source a {
+  color: #906b26;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+body.mkm-site .mkm-engin-fiche__source a:focus-visible {
+  outline: 2px solid #071b3b;
+  outline-offset: 3px;
+}
+
+/* 11. Responsive : basculer avant l'écrasement de la colonne de droite */
+@media (max-width: 1100px) {
+  body.mkm-site .mkm-engin-fiche__intro {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  body.mkm-site .mkm-engin-fiche__intro > img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+    background: #edf1f4;
+  }
+  body.mkm-site .mkm-engin-fiche h1 {
+    max-width: 24ch;
+  }
+  body.mkm-site .mkm-engin-fiche__apercus {
+    max-width: 660px;
+  }
+}
+@media (max-width: 640px) {
+  body.mkm-site .mkm-section.mkm-engin-fiche:not(.mkm-section--divided) {
+    padding-block: 2rem 2.65rem;
+  }
+  body.mkm-site .mkm-section.mkm-engin-fiche.mkm-section--divided {
+    padding-block: 2.65rem 3rem;
+  }
+  body.mkm-site .mkm-engin-fiche__retour {
+    margin-bottom: 1rem;
+  }
+  body.mkm-site .mkm-engin-fiche__intro {
+    gap: 1.4rem;
+  }
+  body.mkm-site .mkm-engin-fiche__intro > img {
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+  }
+  body.mkm-site .mkm-engin-fiche h1 {
+    max-width: none;
+    font-size: clamp(1.8rem, 6.8vw, 2.25rem);
+    line-height: 1.17;
+  }
+  body.mkm-site .mkm-engin-fiche__intro > div > p {
+    font-size: .9375rem;
+    line-height: 1.55;
+  }
+  body.mkm-site .mkm-engin-fiche h2 {
+    font-size: 1.375rem;
+  }
+  body.mkm-site .mkm-engin-fiche__apercus {
+    gap: .4rem;
+    margin-top: 1.35rem;
+  }
+  body.mkm-site .mkm-engin-fiche__apercus li {
+    flex-direction: column;
+    gap: .32rem;
+    min-height: 70px;
+    padding: .65rem .35rem;
+    font-size: .75rem;
+  }
+  body.mkm-site .mkm-engin-fiche__apercus .mkm-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  body.mkm-site .mkm-engin-fiche__intro h2 {
+    margin-top: 1.55rem;
+  }
+  body.mkm-site .mkm-engin-fiche__tableau th,
+  body.mkm-site .mkm-engin-fiche__tableau td {
+    padding: .72rem .7rem;
+    font-size: .8125rem;
+    line-height: 1.4;
+  }
+  body.mkm-site .mkm-engin-fiche__tableau tbody th {
+    width: 48%;
+  }
+  body.mkm-site .mkm-engin-fiche__tableau thead th {
+    font-size: .75rem;
+  }
+  body.mkm-site .mkm-engin-fiche .mkm-engin-fiche__note,
+  body.mkm-site .mkm-engin-fiche .mkm-engin-fiche__source {
+    font-size: .8125rem;
+  }
+}
+@media (max-width: 390px) {
+  body.mkm-site .mkm-engin-fiche__apercus li {
+    font-size: .7rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.mkm-site .mkm-engin-fiche .mkm-engin-fiche__whatsapp {
+    transition: none;
+  }
+}
+
+
+
+/* ==========================================
+   EDUC AFRIK / LIVREAURA
+   HEADER FIXE ET BLANC AU DÉFILEMENT
+========================================== */
+
+/* Header transparent au sommet */
+body.mkm-site:has(.mkm-livre-hero) .mkm-header {
+  position: fixed;
+  inset: 0 0 auto;
+  width: 100%;
+  background: transparent;
+  box-shadow: none;
+  transition:
+    background-color 250ms ease,
+    box-shadow 250ms ease;
+}
+
+/* Header blanc après défilement */
+body.mkm-site:has(.mkm-livre-hero)
+.mkm-header.mkm-header--livre-scrolled {
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(7, 27, 59, 0.09);
+}
+
+/* Navigation bleu marine */
+body.mkm-site:has(.mkm-livre-hero)
+.mkm-header--livre-scrolled .mkm-nav__link {
+  color: #071b3b;
+  text-shadow: none;
+}
+
+/* Liens actifs et survol */
+body.mkm-site:has(.mkm-livre-hero)
+.mkm-header--livre-scrolled .mkm-nav__link:hover,
+body.mkm-site:has(.mkm-livre-hero)
+.mkm-header--livre-scrolled
+.mkm-nav__link[aria-current="page"] {
+  border-bottom-color: #80510a;
+}
+
+/* Bouton du menu mobile */
+body.mkm-site:has(.mkm-livre-hero)
+.mkm-header--livre-scrolled .mkm-menu-toggle {
+  color: #071b3b;
+}
+
+/* Accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  body.mkm-site:has(.mkm-livre-hero) .mkm-header {
+    transition: none;
+  }
+}
+
+
+
+/* ==========================================
+   IMMOBILIER — HEADER BLANC AU SCROLL
+========================================== */
+
+/* Header transparent au sommet du hero */
+body.mkm-site:has(.mkm-immo-hero) .mkm-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+
+  background: transparent;
+  box-shadow: none;
+
+  transition:
+    background-color 250ms ease,
+    box-shadow 250ms ease;
+}
+
+/* Header blanc après défilement */
+body.mkm-site:has(.mkm-immo-hero)
+.mkm-header.mkm-header--immo-scrolled {
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(7, 27, 59, 0.09);
+}
+
+/* Navigation bleu marine */
+body.mkm-site:has(.mkm-immo-hero)
+.mkm-header--immo-scrolled .mkm-nav__link {
+  color: #071b3b;
+  text-shadow: none;
+}
+
+/* Liens au survol et page active */
+body.mkm-site:has(.mkm-immo-hero)
+.mkm-header--immo-scrolled
+.mkm-nav__link:hover,
+body.mkm-site:has(.mkm-immo-hero)
+.mkm-header--immo-scrolled
+.mkm-nav__link[aria-current="page"] {
+  border-bottom-color: #80510a;
+}
+
+/* Bouton du menu mobile */
+body.mkm-site:has(.mkm-immo-hero)
+.mkm-header--immo-scrolled .mkm-menu-toggle {
+  color: #071b3b;
+}
+
+/* Accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  body.mkm-site:has(.mkm-immo-hero) .mkm-header {
+    transition: none;
+  }
+}
+
+
+/* ==========================================
+   EDUC AFRIK + IMMOBILIER
+   CORRECTION SUPERPOSITION DU HEADER
+========================================== */
+
+/* Placer le conteneur du header devant le contenu */
+body.mkm-site:has(.mkm-immo-hero) .mkm-masthead,
+body.mkm-site:has(.mkm-livre-hero) .mkm-masthead {
+  position: relative;
+  z-index: 1000;
+}
+
+/* Le header reste au-dessus des photographies,
+   textes, voiles et commandes des sliders */
+body.mkm-site:has(.mkm-immo-hero) .mkm-header,
+body.mkm-site:has(.mkm-livre-hero) .mkm-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  width: 100%;
+  z-index: 1001;
+
+  pointer-events: auto;
+}
+
+/* Les éléments de navigation restent cliquables */
+body.mkm-site:has(.mkm-immo-hero) .mkm-header__inner,
+body.mkm-site:has(.mkm-livre-hero) .mkm-header__inner {
+  position: relative;
+  z-index: 1;
+}
+
+body.mkm-site:has(.mkm-immo-hero) .mkm-logo-link,
+body.mkm-site:has(.mkm-immo-hero) .mkm-nav__link,
+body.mkm-site:has(.mkm-livre-hero) .mkm-logo-link,
+body.mkm-site:has(.mkm-livre-hero) .mkm-nav__link {
+  pointer-events: auto;
+}
+
+/* Immobilier : fond blanc après défilement */
+body.mkm-site:has(.mkm-immo-hero)
+.mkm-header.mkm-header--immo-scrolled,
+
+/* Educ Afrik : fond blanc après défilement */
+body.mkm-site:has(.mkm-livre-hero)
+.mkm-header.mkm-header--livre-scrolled {
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(7, 27, 59, 0.1);
+}
+
+/* Conserver les liens bleu marine au défilement */
+body.mkm-site:has(.mkm-immo-hero)
+.mkm-header--immo-scrolled .mkm-nav__link,
+
+body.mkm-site:has(.mkm-livre-hero)
+.mkm-header--livre-scrolled .mkm-nav__link {
+  color: #071b3b;
+  text-shadow: none;
+}
+
+
+/* ==========================================
+   IMMOBILIER — BOUTON WHATSAPP DU HERO
+========================================== */
+
+body.mkm-site .mkm-immo-hero__whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+
+  width: fit-content;
+  min-height: 44px;
+  padding: 0.65rem 1.25rem;
+
+  background: #119c52;
+  background-image: none;
+  border: 1px solid #119c52;
+  border-radius: 50px;
+
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+
+  transition:
+    background-color 250ms ease,
+    transform 250ms ease,
+    box-shadow 250ms ease;
+}
+
+body.mkm-site .mkm-immo-hero__whatsapp svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+body.mkm-site .mkm-immo-hero__whatsapp:hover {
+  background: #087b3d;
+  border-color: #087b3d;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(17, 156, 82, 0.2);
+}
+
+body.mkm-site .mkm-immo-hero__whatsapp:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.mkm-site .mkm-immo-hero__whatsapp {
+    transition: none;
+  }
+
+  body.mkm-site .mkm-immo-hero__whatsapp:hover {
+    transform: none;
+  }
+}
+
+
+
+/* ==========================================
+   IMMOBILIER — SECTION EXPERTISE COMPACTE
+========================================== */
+
+/* 1. Réduire le blanc sous le hero */
+body.mkm-site .mkm-immo-hero {
+  padding-bottom: 0.75rem;
+}
+
+/* Rapprocher la section suivante du hero */
+body.mkm-site .mkm-immo-expertise {
+  padding-top: clamp(2rem, 3vw, 3rem);
+  padding-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+
+/* 2. Réduire l'espace avant les photographies */
+body.mkm-site .mkm-immo-expertise__photos {
+  margin-top: clamp(1.5rem, 2.5vw, 2.25rem);
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+
+/* Réduire la hauteur des deux images */
+body.mkm-site .mkm-immo-expertise__photos li {
+  height: clamp(230px, 27vw, 370px);
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+body.mkm-site .mkm-immo-expertise__photos img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* 3. Rapprocher les trois piliers des photographies */
+body.mkm-site .mkm-immo-piliers {
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+/* Espacement interne des trois piliers */
+body.mkm-site .mkm-immo-piliers li {
+  gap: 0.45rem;
+}
+
+/* Réduire les trois pictogrammes */
+body.mkm-site .mkm-immo-piliers .mkm-icon {
+  width: 1.875rem;  /* 30px */
+  height: 1.875rem;
+}
+
+/* Réduire les titres des trois piliers */
+body.mkm-site .mkm-immo-piliers h3 {
+  font-size: 1rem; /* 16px */
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+/* Réduire leurs descriptions */
+body.mkm-site .mkm-immo-expertise
+.mkm-immo-piliers p {
+  max-width: 19rem;
+  margin: 0;
+  font-size: 0.8125rem; /* 13px */
+  line-height: 1.55;
+  color: #8793a2;
+}
+
+/* ==========================================
+   TABLETTES
+========================================== */
+
+@media (max-width: 896px) {
+  body.mkm-site .mkm-immo-hero {
+    padding-bottom: 0.5rem;
+  }
+
+  body.mkm-site .mkm-immo-expertise {
+    padding-top: 2rem;
+  }
+
+  /* Garder les deux photos côte à côte */
+  body.mkm-site .mkm-immo-expertise__photos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body.mkm-site .mkm-immo-expertise__photos li {
+    height: clamp(190px, 30vw, 280px);
+  }
+
+  body.mkm-site .mkm-immo-piliers {
+    gap: 1rem;
+  }
+}
+
+/* ==========================================
+   SMARTPHONES
+========================================== */
+
+@media (max-width: 640px) {
+  body.mkm-site .mkm-immo-expertise {
+    padding-top: 1.75rem;
+    padding-bottom: 2.5rem;
+  }
+
+  body.mkm-site .mkm-immo-expertise__photos {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  body.mkm-site .mkm-immo-expertise__photos li {
+    height: clamp(180px, 50vw, 250px);
+  }
+
+  body.mkm-site .mkm-immo-piliers {
+    grid-template-columns: 1fr;
+    margin-top: 1.75rem;
+    gap: 1.5rem;
+  }
+
+  body.mkm-site .mkm-immo-piliers .mkm-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  body.mkm-site .mkm-immo-piliers h3 {
+    font-size: 0.9375rem;
+  }
+
+  body.mkm-site .mkm-immo-expertise
+  .mkm-immo-piliers p {
+    font-size: 0.8125rem;
+  }
+}
+
+
+/* ==========================================
+   IMMOBILIER — LABELS DES CINQ PHOTOGRAPHIES
+========================================== */
+
+body.mkm-site .mkm-immo-galerie__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  isolation: isolate;
+}
+
+/* Photographies */
+body.mkm-site .mkm-immo-galerie__item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* Dégradé discret au bas des photos */
+body.mkm-site .mkm-immo-galerie__item::after {
+  content: "";
+  position: absolute;
+  inset: 35% 0 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(7, 27, 59, 0.12) 40%,
+    rgba(7, 27, 59, 0.78) 100%
+  );
+  pointer-events: none;
+}
+
+/* Labels */
+body.mkm-site .mkm-immo-galerie__label {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 2;
+
+  color: #ffffff;
+  font-size: 0.9375rem;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Smartphones */
+@media (max-width: 640px) {
+  body.mkm-site .mkm-immo-galerie__label {
+    bottom: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.8125rem;
+  }
+}
+
+
+
+/* ==========================================
+   TRANSPORT — HARMONISATION DES PICTOGRAMMES
+========================================== */
+
+/* Agrandir uniquement les deux premiers */
+body.mkm-site .mkm-transport-atouts__item:nth-child(-n+2)
+.mkm-transport-atouts__icone {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Conserver la taille des deux derniers */
+body.mkm-site .mkm-transport-atouts__item:nth-child(n+3)
+.mkm-transport-atouts__icone {
+  width: 64px;
+  height: 64px;
+}
+
+/* Smartphones */
+@media (max-width: 480px) {
+  body.mkm-site .mkm-transport-atouts__item:nth-child(-n+2)
+  .mkm-transport-atouts__icone {
+    width: 62px;
+    height: 62px;
+  }
+
+  body.mkm-site .mkm-transport-atouts__item:nth-child(n+3)
+  .mkm-transport-atouts__icone {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+
+/* ==========================================
+   ACCUEIL — HERO MOBILE PREMIUM
+========================================== */
+
+@media (max-width: 640px) {
+
+  /* Hauteur naturelle, sans écran entier imposé */
+  body.mkm-site .mkm-hero {
+    min-height: 0;
+    height: auto;
+  }
+
+  body.mkm-site .mkm-hero__stage {
+    flex: initial;
+  }
+
+  /* Composition verticale */
+  body.mkm-site .mkm-hero--groupe .mkm-hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 1.25rem;
+
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  body.mkm-site .mkm-hero--groupe .mkm-hero__content {
+    align-self: start;
+  }
+
+  /* Surtitre */
+  body.mkm-site .mkm-hero .mkm-eyebrow {
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
+
+  /* Titre */
+  body.mkm-site .mkm-hero .mkm-hero__title {
+    font-size: clamp(1.875rem, 8vw, 2.125rem);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+
+  /* Description */
+  body.mkm-site .mkm-hero .mkm-hero__description {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    max-width: 38ch;
+  }
+
+  /* Boutons */
+  body.mkm-site .mkm-hero .mkm-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.625rem;
+  }
+
+  body.mkm-site .mkm-hero .mkm-actions .mkm-btn {
+    width: 100%;
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+    font-size: 0.78rem;
+  }
+
+  /* Une seule photographie visible */
+  body.mkm-site .mkm-hero .mkm-collage--groupe {
+    display: block;
+    width: 100%;
+    height: clamp(180px, 55vw, 230px);
+    min-height: 0;
+    aspect-ratio: auto;
+    overflow: hidden;
+  }
+
+  body.mkm-site .mkm-hero .mkm-collage--groupe
+  .mkm-collage__item {
+    display: none;
+  }
+
+  body.mkm-site .mkm-hero .mkm-collage--groupe
+  .mkm-collage__item:first-child {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  body.mkm-site .mkm-hero .mkm-collage--groupe
+  .mkm-collage__item:first-child img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Pagination rapprochée de la photographie */
+  body.mkm-site .mkm-hero--groupe .mkm-slider-footer {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 0.5rem;
+    padding-block: 0.75rem 1.25rem;
+  }
+
+  body.mkm-site .mkm-hero .mkm-slider-page {
+    min-width: 32px;
+    min-height: 44px;
+    font-size: 0.75rem;
+  }
+
+  /* Conserver uniquement la commande Pause */
+  body.mkm-site .mkm-hero .mkm-slider-control:first-child,
+  body.mkm-site .mkm-hero .mkm-slider-control:last-child {
+    display: none;
+  }
+
+  body.mkm-site .mkm-hero .mkm-slider-control {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

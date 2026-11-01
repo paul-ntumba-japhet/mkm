@@ -1,0 +1,407 @@
+@charset "UTF-8";
+/* ========================================================================== 
+   GROUPE MKM — Design system V1.1 / 10 octobre 2026
+   Complément de la charte V1 : les fonds clairs deviennent BLANC PUR #FFFFFF.
+
+   UTILISATION
+   <html lang="fr" data-mkm-theme="turquoise">  (thème par défaut)
+   <html lang="fr" data-mkm-theme="coral">      (variante corail)
+   <body class="mkm-site"> ... </body>
+   Charger cette feuille après le reset et avant les styles propres aux pages.
+   Les sélecteurs de composants sont préfixés mkm- pour limiter les conflits.
+
+   POLICES
+   L'import ci-dessous nécessite une connexion à Google Fonts. Pour héberger
+   localement Manrope et Inter, supprimer l'import et déclarer les @font-face
+   correspondantes avec font-display: swap. Arial est le repli sans réseau.
+   Le monogramme du logo reste une image : ne pas le recomposer avec ces polices.
+
+   LOGO
+   Utiliser le PNG transparent/SVG pétrole + turquoise OU pétrole + corail.
+   Sur fond sombre, employer .mkm-logo-panel (cartouche blanc). Aucun filtre CSS
+   ne doit recolorer le logo. Pas de devise, ni de version entièrement corail.
+   Ce fichier définit l'apparence ; il n'ajoute ni slider JS ni validation métier.
+   ========================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+
+/* 01 — Fondations et thème turquoise */
+:root {
+  color-scheme: light;
+  --mkm-petroleum: #123f46;
+  --mkm-night: #071725;
+  --mkm-white: #ffffff;
+  --mkm-turquoise: #2cb8b2;
+  --mkm-coral: #ee7663;
+  --mkm-accent: var(--mkm-turquoise);
+  --mkm-accent-hover: #27aba5;
+  --mkm-accent-active: #239c97;
+  --mkm-accent-text: #08746f; /* Accent assombri pour liens sur blanc. */
+  --mkm-accent-rgb: 44, 184, 178;
+  --mkm-on-accent: var(--mkm-night);
+
+  /* Pas d'ivoire ni de gris pour les surfaces claires principales. */
+  --mkm-bg: #ffffff;
+  --mkm-surface: #ffffff;
+  --mkm-surface-raised: #ffffff;
+  --mkm-bg-inverse: var(--mkm-night);
+  --mkm-bg-brand: var(--mkm-petroleum);
+  --mkm-text: var(--mkm-petroleum);
+  --mkm-text-muted: #52676d;
+  --mkm-text-inverse: #ffffff;
+  --mkm-text-inverse-muted: #c5d5dc;
+  --mkm-border: #d6e1e2; /* Décoration ; pas le seul contour d'un champ. */
+  --mkm-border-strong: #75898e;
+  --mkm-border-inverse: #536872;
+  --mkm-disabled-bg: #e9eeee;
+  --mkm-disabled-text: #52676d;
+  --mkm-success: #17663b;
+  --mkm-warning: #805600;
+  --mkm-error: #b42318;
+  --mkm-info: #175c94;
+
+  --mkm-font-heading: "Manrope", Arial, sans-serif;
+  --mkm-font-body: "Inter", Arial, sans-serif;
+  --mkm-weight-normal: 400;
+  --mkm-weight-medium: 500;
+  --mkm-weight-semibold: 600;
+  --mkm-weight-bold: 700;
+  --mkm-text-xs: .75rem;
+  --mkm-text-sm: .875rem;
+  --mkm-text-base: 1rem;
+  --mkm-text-lg: 1.125rem;
+  --mkm-h1: clamp(2.125rem, 1.5rem + 2.6vw, 3.5rem);
+  --mkm-h2: clamp(1.75rem, 1.4rem + 1.5vw, 2.25rem);
+  --mkm-h3: 1.5rem;
+  --mkm-leading-body: 1.625;
+  --mkm-leading-heading: 1.18;
+
+  --mkm-space-1: .25rem;
+  --mkm-space-2: .5rem;
+  --mkm-space-3: .75rem;
+  --mkm-space-4: 1rem;
+  --mkm-space-6: 1.5rem;
+  --mkm-space-8: 2rem;
+  --mkm-space-12: 3rem;
+  --mkm-space-16: 4rem;
+  --mkm-space-24: 6rem;
+  --mkm-container: 75rem;
+  --mkm-gutter: clamp(1.5rem, 4vw, 3rem);
+  --mkm-section-space: clamp(3rem, 6vw, 6rem);
+  --mkm-radius-sm: .375rem;
+  --mkm-radius-md: .5rem;
+  --mkm-radius-lg: .75rem;
+  --mkm-radius-pill: 999px;
+  --mkm-shadow-xs: 0 1px 3px rgb(7 23 37 / 6%);
+  --mkm-shadow-sm: 0 3px 12px rgb(7 23 37 / 7%);
+  --mkm-shadow-md: 0 8px 24px rgb(7 23 37 / 10%);
+  --mkm-shadow-lg: 0 18px 48px rgb(7 23 37 / 14%);
+  --mkm-shadow-header: 0 2px 16px rgb(7 23 37 / 7%);
+  --mkm-duration-fast: 150ms;
+  --mkm-duration: 220ms;
+  --mkm-ease: cubic-bezier(.2, .8, .2, 1);
+  --mkm-z-header: 100;
+  --mkm-z-overlay: 200;
+}
+
+/* Placer l'attribut sur <html>, ou sur un conteneur pour une comparaison. */
+[data-mkm-theme="turquoise"] {
+  --mkm-accent: #2cb8b2;
+  --mkm-accent-hover: #27aba5;
+  --mkm-accent-active: #239c97;
+  --mkm-accent-text: #08746f;
+  --mkm-accent-rgb: 44, 184, 178;
+}
+[data-mkm-theme="coral"] {
+  --mkm-accent: #ee7663;
+  --mkm-accent-hover: #e76d59;
+  --mkm-accent-active: #df634f;
+  --mkm-accent-text: #ad4030;
+  --mkm-accent-rgb: 238, 118, 99;
+}
+
+/* 02 — Base */
+.mkm-site, .mkm-site *, .mkm-site *::before, .mkm-site *::after {
+  box-sizing: border-box;
+}
+.mkm-site {
+  margin: 0;
+  background: var(--mkm-bg);
+  color: var(--mkm-text);
+  font: var(--mkm-weight-normal) var(--mkm-text-base) / var(--mkm-leading-body) var(--mkm-font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+}
+.mkm-site :where(button, input, select, textarea) { font: inherit; }
+.mkm-site :where(img, svg, video) { max-width: 100%; }
+.mkm-site img { display: block; height: auto; }
+.mkm-site ::selection {
+  color: var(--mkm-night);
+  background: var(--mkm-accent);
+}
+/* Double repère de focus visible sur fonds blancs, foncés et colorés. */
+.mkm-site :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--mkm-night);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--mkm-white);
+}
+.mkm-sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 03 — Typographie */
+.mkm-site :where(h1, h2, h3, h4), .mkm-title {
+  margin: 0 0 var(--mkm-space-6);
+  color: var(--mkm-text);
+  font-family: var(--mkm-font-heading);
+  font-weight: var(--mkm-weight-bold);
+  line-height: var(--mkm-leading-heading);
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+.mkm-site h1, .mkm-h1 { font-size: var(--mkm-h1); }
+.mkm-site h2, .mkm-h2 { font-size: var(--mkm-h2); }
+.mkm-site h3, .mkm-h3 { font-size: var(--mkm-h3); }
+.mkm-site h4 { font-size: var(--mkm-text-lg); }
+.mkm-site p { margin: 0 0 var(--mkm-space-4); }
+.mkm-prose { max-width: 68ch; }
+.mkm-lead { max-width: 58ch; font-size: var(--mkm-text-lg); }
+.mkm-muted { color: var(--mkm-text-muted); }
+.mkm-eyebrow {
+  margin-block-end: var(--mkm-space-4);
+  color: var(--mkm-accent-text);
+  font-size: var(--mkm-text-sm);
+  font-weight: var(--mkm-weight-semibold);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.mkm-link {
+  color: var(--mkm-accent-text);
+  text-decoration: underline;
+  text-underline-offset: .22em;
+  text-decoration-thickness: 1px;
+}
+.mkm-link:hover { text-decoration-thickness: 2px; }
+/* Utiliser l'accent clair comme texte uniquement sur fond sombre. */
+.mkm-on-dark {
+  --mkm-text: #ffffff;
+  --mkm-text-muted: #c5d5dc;
+  background: var(--mkm-night);
+  color: var(--mkm-text);
+}
+.mkm-on-dark :where(.mkm-eyebrow, .mkm-link, .mkm-accent-text) {
+  color: var(--mkm-accent);
+}
+
+/* 04 — Surfaces, grilles et espacements */
+.mkm-container {
+  width: min(var(--mkm-container), calc(100% - 2 * var(--mkm-gutter)));
+  margin-inline: auto;
+}
+.mkm-section { padding-block: var(--mkm-section-space); background: #ffffff; }
+.mkm-section--dark { background: var(--mkm-night); }
+.mkm-section--brand { background: var(--mkm-petroleum); }
+.mkm-section--divided { border-block-start: 1px solid var(--mkm-border); }
+.mkm-grid { display: grid; gap: var(--mkm-space-6); }
+.mkm-grid--services { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.mkm-grid--projects { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.mkm-stack > * + * { margin-block-start: var(--mkm-space-6); }
+.mkm-actions { display: flex; flex-wrap: wrap; gap: var(--mkm-space-4); align-items: center; }
+
+/* 05 — Boutons : le texte foncé garantit le contraste sur les deux accents. */
+.mkm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mkm-space-3);
+  min-height: 48px;
+  padding: .75rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--mkm-radius-md);
+  font-family: var(--mkm-font-body);
+  font-size: var(--mkm-text-base);
+  font-weight: var(--mkm-weight-semibold);
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--mkm-duration-fast) var(--mkm-ease),
+              border-color var(--mkm-duration-fast) var(--mkm-ease),
+              box-shadow var(--mkm-duration-fast) var(--mkm-ease);
+}
+.mkm-btn--primary { background: var(--mkm-accent); color: var(--mkm-on-accent); }
+.mkm-btn--primary:hover { background: var(--mkm-accent-hover); }
+.mkm-btn--primary:active { background: var(--mkm-accent-active); }
+.mkm-btn--secondary { background: #ffffff; color: var(--mkm-petroleum); border-color: var(--mkm-petroleum); }
+.mkm-btn--secondary:hover { box-shadow: inset 0 0 0 1px var(--mkm-petroleum); }
+.mkm-btn--inverse { background: transparent; color: #ffffff; border-color: #ffffff; }
+.mkm-btn--inverse:hover { background: rgb(255 255 255 / 10%); }
+.mkm-btn:disabled, .mkm-btn[aria-disabled="true"] {
+  color: var(--mkm-disabled-text);
+  background: var(--mkm-disabled-bg);
+  border-color: var(--mkm-border);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+/* aria-disabled ne bloque pas un lien : empêcher son activation dans le JS. */
+
+/* 06 — Cartes : blanc pur, bordures fines, aucune dorure ni relief métallique. */
+.mkm-card {
+  --mkm-text: var(--mkm-petroleum);
+  --mkm-text-muted: #52676d;
+  min-width: 0;
+  padding: var(--mkm-space-6);
+  color: var(--mkm-text);
+  background: #ffffff;
+  border: 1px solid var(--mkm-border);
+  border-radius: var(--mkm-radius-lg);
+  box-shadow: var(--mkm-shadow-xs);
+}
+.mkm-card--interactive {
+  text-decoration: none;
+  transition: box-shadow var(--mkm-duration) var(--mkm-ease), border-color var(--mkm-duration) var(--mkm-ease);
+}
+.mkm-card--interactive:hover {
+  border-color: var(--mkm-accent-text);
+  box-shadow: var(--mkm-shadow-md);
+}
+.mkm-card__title { margin-block: var(--mkm-space-4) var(--mkm-space-2); font-size: 1.125rem; }
+.mkm-card__description { color: var(--mkm-text-muted); font-size: var(--mkm-text-sm); }
+.mkm-project-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--mkm-radius-md);
+}
+
+/* 07 — Pictogrammes SVG : Lucide, grille 24 × 24, trait homogène. */
+.mkm-icon {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 24px; height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: middle;
+}
+.mkm-icon--small { width: 20px; height: 20px; }
+.mkm-icon--service { width: 48px; height: 48px; color: var(--mkm-petroleum); }
+.mkm-on-dark .mkm-icon--service { color: var(--mkm-accent); }
+.mkm-card .mkm-icon--service { color: var(--mkm-petroleum); }
+/* Icône décorative : aria-hidden="true". Bouton à icône : nom accessible requis. */
+
+/* 08 — En-tête et logo */
+.mkm-header {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: var(--mkm-z-header);
+  background: transparent;
+  border-block-end: 0;
+  box-shadow: none;
+}
+.mkm-header__inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding-block: 1rem; }
+.mkm-logo { display: block; width: clamp(120px, 14vw, 156px); height: auto; }
+.mkm-logo-panel { display: inline-flex; align-items: center; background: #ffffff; padding: 1rem; border-radius: var(--mkm-radius-md); }
+.mkm-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.mkm-nav__link {
+  display: inline-flex; align-items: center; min-height: 44px;
+  color: var(--mkm-petroleum); font-size: .875rem; font-weight: 600;
+  text-decoration: none; border-block-end: 2px solid transparent;
+}
+.mkm-nav__link:hover, .mkm-nav__link[aria-current="page"] { border-color: var(--mkm-accent-text); }
+
+/* 09 — Hero et contrôles. La logique de rotation est à implémenter séparément. */
+.mkm-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--mkm-night);
+  color: #ffffff;
+}
+.mkm-hero__background { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.mkm-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(90deg, rgb(7 23 37 / 96%) 0%, rgb(7 23 37 / 82%) 48%, rgb(7 23 37 / 25%) 100%);
+}
+.mkm-hero__inner { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 3rem; padding-block: clamp(3rem, 7vw, 6rem); }
+.mkm-hero__title { color: #ffffff !important; }
+.mkm-hero__title em { color: var(--mkm-accent); font-style: normal; }
+.mkm-hero__description { color: var(--mkm-text-inverse-muted); max-width: 54ch; }
+.mkm-slider-controls { display: flex; align-items: center; gap: .75rem; padding-block: 1.5rem; }
+.mkm-slider-control {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 44px; min-height: 44px;
+  border-radius: 50%; border: 1px solid var(--mkm-border-inverse);
+  color: #ffffff; background: var(--mkm-night); cursor: pointer;
+}
+.mkm-slider-control:hover, .mkm-slider-control[aria-current="true"] { color: var(--mkm-night); background: var(--mkm-accent); border-color: var(--mkm-accent); }
+/* Fournir de vrais <button> avec aria-label. Pause au focus/survol ; ne pas
+   déplacer le focus automatiquement et ne pas annoncer chaque rotation. */
+
+/* 10 — Formulaires de contact et d'estimation */
+.mkm-field { display: grid; gap: .5rem; margin-block-end: 1.5rem; }
+.mkm-label { color: var(--mkm-text); font-size: .875rem; font-weight: 600; }
+.mkm-input, .mkm-select, .mkm-textarea {
+  width: 100%; min-height: 48px;
+  padding: .75rem 1rem;
+  background: #ffffff; color: var(--mkm-petroleum);
+  border: 1px solid var(--mkm-border-strong);
+  border-radius: var(--mkm-radius-md);
+  font: inherit;
+}
+.mkm-textarea { min-height: 144px; resize: vertical; }
+.mkm-input::placeholder, .mkm-textarea::placeholder { color: #52676d; opacity: 1; }
+.mkm-input:disabled, .mkm-select:disabled, .mkm-textarea:disabled { background: var(--mkm-disabled-bg); cursor: not-allowed; }
+.mkm-field [aria-invalid="true"] { border-color: var(--mkm-error); border-width: 2px; }
+.mkm-help { margin: 0; font-size: .875rem; color: var(--mkm-text-muted); }
+.mkm-error { color: var(--mkm-error); font-size: .875rem; }
+.mkm-alert { background: #ffffff; color: var(--mkm-petroleum); border: 1px solid var(--mkm-border); border-inline-start: 4px solid var(--mkm-info); padding: 1rem 1.5rem; border-radius: var(--mkm-radius-md); }
+.mkm-alert--success { border-inline-start-color: var(--mkm-success); }
+.mkm-alert--warning { border-inline-start-color: var(--mkm-warning); }
+.mkm-alert--error { border-inline-start-color: var(--mkm-error); }
+/* Associer les aides/erreurs aux champs via aria-describedby et garder un label. */
+
+/* 11 — Responsive et préférences utilisateur */
+@media (max-width: 64rem) {
+  .mkm-grid--services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mkm-header__inner { flex-wrap: wrap; gap: 1rem; }
+  .mkm-nav { gap: 1rem; }
+  .mkm-hero__inner { grid-template-columns: 1fr; gap: 2rem; }
+}
+@media (max-width: 40rem) {
+  .mkm-grid--projects, .mkm-grid--services { grid-template-columns: 1fr; }
+  .mkm-actions { align-items: stretch; }
+  .mkm-actions .mkm-btn { width: 100%; }
+  .mkm-card { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mkm-site *, .mkm-site *::before, .mkm-site *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  /* Le JS du slider doit également désactiver la rotation automatique. */
+}
+@media (forced-colors: active) {
+  .mkm-btn, .mkm-card, .mkm-slider-control { border: 1px solid ButtonText; }
+  .mkm-site :focus-visible { outline: 3px solid Highlight; box-shadow: none; }
+}
+@media print {
+  .mkm-site, .mkm-section, .mkm-card, .mkm-on-dark, .mkm-hero {
+    --mkm-text: #000000; --mkm-text-muted: #333333;
+    color: #000000; background: #ffffff; box-shadow: none;
+  }
+  .mkm-header { position: static; box-shadow: none; }
+  .mkm-hero::before, .mkm-hero__background, .mkm-slider-controls { display: none; }
+  .mkm-hero__title, .mkm-hero__description { color: #000000 !important; }
+  .mkm-card { break-inside: avoid; }
+}

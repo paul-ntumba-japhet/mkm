@@ -1,0 +1,534 @@
+@charset "UTF-8";
+/* GROUPE MKM — Design system V2 — 11 octobre 2026
+   CHARTE : marine #071B3B, nuit #031525, or #E8B547, blanc pur #FFFFFF.
+   Valeurs web proposées à partir des maquettes, pas des références Pantone.
+
+   INSTRUCTIONS POUR CURSOR
+   1. Remplacer l'ancienne feuille par celle-ci (ne pas cumuler V1 et V2).
+      Retirer data-mkm-theme="turquoise|coral". Garder body.mkm-site.
+      Les anciens tokens pétrole/turquoise/corail sont retirés : migrer les
+      styles spécifiques vers --mkm-navy, --mkm-gold et tokens sémantiques.
+   2. Charger après reset et avant styles de page. Import Google Fonts ci-dessous
+      facultatif : pour production, auto-héberger Barlow Condensed 600/700,
+      Manrope 400-800 et Inter 400-700 via @font-face/font-display:swap.
+      Barlow Condensed = grands titres hero/navigation ; Manrope = autres titres ;
+      Inter = texte, boutons, formulaires. Ne pas recomposer le logo en texte.
+   3. Logo clair : deux M marine, K/arc or, GROUPE marine. Fond sombre : variante
+      blanche et or. PNG transparent ou SVG officiel, sans devise ni deuxième MKM.
+      Ne pas redessiner ni recolorer avec filter. Recadrer les marges du fichier.
+   4. Structure hero : .mkm-masthead[data-tone="light|dark"] > header.mkm-header
+      + section.mkm-hero. Dans hero : .mkm-container.mkm-hero__inner contenant
+      .mkm-hero__content + .mkm-hero__media, puis .mkm-container.mkm-slider-footer.
+      Navigation superposée ; hero min-height:100svh et croissance libre au zoom.
+      Slide1 sombre ; slides engins, livre et numérique clairs. 4 indicateurs.
+   5. .mkm-btn--primary = marine/blanc ; .mkm-btn--gold = or/marine ; toujours
+      associer à .mkm-btn. Sur fond sombre choisir gold ou inverse.
+      Or clair réservé aux décors/fonds et texte sur marine ; liens sur blanc
+      utilisent l'or brun #80510A pour le contraste. Aucune petite typo or pâle.
+   6. Le CSS ne fournit pas les interactions : implémenter JS du menu/slider,
+      labels de formulaires, aria-describedby, erreurs textuelles, noms des
+      boutons à icône. Un h1 principal ; slides suivants h2 avec même classe.
+      Tester clavier, zoom 200/400%, mobile, contraste réel avec les photos.
+      Pas d'animation automatique sans pause ; respecter reduced-motion.
+   7. Photos séparées des textes HTML. Ne pas ajouter MKM sur vêtements/engins,
+      sauf scène de distribution explicitement validée avec écussons.
+      Aucune boutique, connexion ou réservation fonctionnelle ajoutée en phase1.
+   8. Éviter les !important de page et les valeurs de couleur dispersées.
+      Les petits contours pâles sont décoratifs, pas les seuls repères de contrôle.
+*/
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+
+/* 01 — Palette numérique proposée, dérivée du logo marine et or. */
+:root {
+  color-scheme: light;
+  --mkm-navy: #071b3b;
+  --mkm-night: #031525;
+  --mkm-white: #ffffff;
+  --mkm-gold: #e8b547;
+  --mkm-gold-light: #ffdb82;
+  --mkm-gold-deep: #a96810;
+  --mkm-accent: var(--mkm-gold);
+  --mkm-accent-hover: #f2c761;
+  --mkm-accent-active: #dca432;
+  --mkm-accent-text: #80510a;
+  --mkm-accent-rgb: 232, 181, 71;
+  --mkm-on-accent: var(--mkm-navy);
+  --mkm-gold-gradient: linear-gradient(115deg, #e8b547, #ffdb82 48%, #e8b547);
+
+  /* Pas d'ivoire ni de gris pour les surfaces claires principales. */
+  --mkm-bg: #ffffff;
+  --mkm-surface: #ffffff;
+  --mkm-surface-raised: #ffffff;
+  --mkm-bg-inverse: var(--mkm-night);
+  --mkm-bg-brand: var(--mkm-navy);
+  --mkm-text: var(--mkm-navy);
+  --mkm-text-muted: #526071;
+  --mkm-text-inverse: #ffffff;
+  --mkm-text-inverse-muted: #c5d5dc;
+  --mkm-border: #dce1e8; /* Décoration ; pas le seul contour d'un champ. */
+  --mkm-border-strong: #707d8e;
+  --mkm-border-inverse: #536872;
+  --mkm-disabled-bg: #e9eeee;
+  --mkm-disabled-text: #526071;
+  --mkm-success: #17663b;
+  --mkm-warning: #805600;
+  --mkm-error: #b42318;
+  --mkm-info: #175c94;
+
+  --mkm-font-heading: "Manrope", Arial, sans-serif;
+  --mkm-font-body: "Inter", Arial, sans-serif;
+  --mkm-weight-normal: 400;
+  --mkm-weight-medium: 500;
+  --mkm-weight-semibold: 600;
+  --mkm-weight-bold: 700;
+  --mkm-text-xs: .75rem;
+  --mkm-text-sm: .875rem;
+  --mkm-text-base: 1rem;
+  --mkm-text-lg: 1.125rem;
+  --mkm-h1: clamp(2.25rem, 1.25rem + 3vw, 4.5rem);
+  --mkm-font-display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --mkm-header-height: 7rem;
+  --mkm-h2: clamp(1.75rem, 1.4rem + 1.5vw, 2.25rem);
+  --mkm-h3: 1.5rem;
+  --mkm-leading-body: 1.625;
+  --mkm-leading-heading: 1.18;
+
+  --mkm-space-1: .25rem;
+  --mkm-space-2: .5rem;
+  --mkm-space-3: .75rem;
+  --mkm-space-4: 1rem;
+  --mkm-space-6: 1.5rem;
+  --mkm-space-8: 2rem;
+  --mkm-space-12: 3rem;
+  --mkm-space-16: 4rem;
+  --mkm-space-24: 6rem;
+  --mkm-container: 1600px;
+  --mkm-gutter: clamp(1.5rem, 4vw, 3rem);
+  --mkm-section-space: clamp(3rem, 6vw, 6rem);
+  --mkm-radius-sm: .375rem;
+  --mkm-radius-md: .5rem;
+  --mkm-radius-lg: .75rem;
+  --mkm-radius-pill: 999px;
+  --mkm-shadow-xs: 0 1px 3px rgb(7 23 37 / 6%);
+  --mkm-shadow-sm: 0 3px 12px rgb(7 23 37 / 7%);
+  --mkm-shadow-md: 0 8px 24px rgb(7 23 37 / 10%);
+  --mkm-shadow-lg: 0 18px 48px rgb(7 23 37 / 14%);
+  --mkm-shadow-header: 0 2px 16px rgb(7 23 37 / 7%);
+  --mkm-duration-fast: 150ms;
+  --mkm-duration: 220ms;
+  --mkm-ease: cubic-bezier(.2, .8, .2, 1);
+  --mkm-z-header: 100;
+  --mkm-z-overlay: 200;
+}
+
+/* 02 — Base */
+.mkm-site, .mkm-site *, .mkm-site *::before, .mkm-site *::after {
+  box-sizing: border-box;
+}
+.mkm-site {
+  margin: 0;
+  background: var(--mkm-bg);
+  color: var(--mkm-text);
+  font: var(--mkm-weight-normal) var(--mkm-text-base) / var(--mkm-leading-body) var(--mkm-font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+}
+.mkm-site :where(button, input, select, textarea) { font: inherit; }
+.mkm-site :where(img, svg, video) { max-width: 100%; }
+.mkm-site img { display: block; height: auto; }
+.mkm-site ::selection {
+  color: var(--mkm-night);
+  background: var(--mkm-accent);
+}
+/* Double repère de focus visible sur fonds blancs, foncés et colorés. */
+.mkm-site :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--mkm-night);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--mkm-white);
+}
+.mkm-sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 03 — Typographie */
+.mkm-site :where(h1, h2, h3, h4), .mkm-title {
+  margin: 0 0 var(--mkm-space-6);
+  color: var(--mkm-text);
+  font-family: var(--mkm-font-heading);
+  font-weight: var(--mkm-weight-bold);
+  line-height: var(--mkm-leading-heading);
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+.mkm-site h1, .mkm-h1 { font-size: var(--mkm-h1); }
+.mkm-site h2, .mkm-h2 { font-size: var(--mkm-h2); }
+.mkm-site h3, .mkm-h3 { font-size: var(--mkm-h3); }
+.mkm-site h4 { font-size: var(--mkm-text-lg); }
+.mkm-site p { margin: 0 0 var(--mkm-space-4); }
+.mkm-prose { max-width: 68ch; }
+.mkm-lead { max-width: 58ch; font-size: var(--mkm-text-lg); }
+.mkm-muted { color: var(--mkm-text-muted); }
+.mkm-eyebrow {
+  margin-block-end: var(--mkm-space-4);
+  color: var(--mkm-accent-text);
+  font-size: var(--mkm-text-sm);
+  font-weight: var(--mkm-weight-semibold);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.mkm-link {
+  color: var(--mkm-accent-text);
+  text-decoration: underline;
+  text-underline-offset: .22em;
+  text-decoration-thickness: 1px;
+}
+.mkm-link:hover { text-decoration-thickness: 2px; }
+/* Utiliser l'accent clair comme texte uniquement sur fond sombre. */
+.mkm-on-dark {
+  --mkm-text: #ffffff;
+  --mkm-text-muted: #c5d5dc;
+  background: var(--mkm-night);
+  color: var(--mkm-text);
+}
+.mkm-on-dark :where(.mkm-eyebrow, .mkm-link, .mkm-accent-text) {
+  color: var(--mkm-accent);
+}
+
+/* 04 — Surfaces, grilles et espacements */
+.mkm-container {
+  width: min(var(--mkm-container), calc(100% - 2 * var(--mkm-gutter)));
+  margin-inline: auto;
+}
+.mkm-section { padding-block: var(--mkm-section-space); background: #ffffff; }
+.mkm-section--dark { background: var(--mkm-night); }
+.mkm-section--brand { background: var(--mkm-navy); }
+.mkm-section--divided { border-block-start: 1px solid var(--mkm-border); }
+.mkm-grid { display: grid; gap: var(--mkm-space-6); }
+.mkm-grid--services { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.mkm-grid--projects { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.mkm-stack > * + * { margin-block-start: var(--mkm-space-6); }
+.mkm-actions { display: flex; flex-wrap: wrap; gap: var(--mkm-space-4); align-items: center; }
+
+/* 05 — Boutons : marine/blanc pour le CTA principal ; or/marine en accent. */
+.mkm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mkm-space-3);
+  min-height: 48px;
+  padding: .75rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--mkm-radius-md);
+  font-family: var(--mkm-font-body);
+  font-size: var(--mkm-text-base);
+  font-weight: var(--mkm-weight-semibold);
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--mkm-duration-fast) var(--mkm-ease),
+              border-color var(--mkm-duration-fast) var(--mkm-ease),
+              box-shadow var(--mkm-duration-fast) var(--mkm-ease);
+}
+.mkm-btn--primary { background: var(--mkm-navy); color: #ffffff; }
+.mkm-btn--primary:hover { background: #14335b; }
+.mkm-btn--primary:active { background: var(--mkm-night); }
+.mkm-btn--gold { background: var(--mkm-gold); background-image: var(--mkm-gold-gradient); color: var(--mkm-navy); border-color: #80510a; }
+.mkm-btn--gold:hover { background-image: none; background-color: var(--mkm-gold-light); }
+.mkm-btn--gold:active { background-image: none; background-color: var(--mkm-accent-active); }
+.mkm-btn--secondary { background: #ffffff; color: var(--mkm-navy); border-color: var(--mkm-navy); }
+.mkm-btn--secondary:hover { box-shadow: inset 0 0 0 1px var(--mkm-navy); }
+.mkm-btn--inverse { background: transparent; color: #ffffff; border-color: #ffffff; }
+.mkm-btn--inverse:hover { background: rgb(255 255 255 / 10%); }
+.mkm-btn:disabled, .mkm-btn[aria-disabled="true"] {
+  color: var(--mkm-disabled-text);
+  background: var(--mkm-disabled-bg);
+  border-color: var(--mkm-border);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+/* aria-disabled ne bloque pas un lien : empêcher son activation dans le JS. */
+
+/* 06 — Cartes : blanc pur, ombres sobres, or limité aux accents. */
+.mkm-card {
+  --mkm-text: var(--mkm-navy);
+  --mkm-text-muted: #526071;
+  min-width: 0;
+  padding: var(--mkm-space-6);
+  color: var(--mkm-text);
+  background: #ffffff;
+  border: 1px solid var(--mkm-border);
+  border-radius: var(--mkm-radius-lg);
+  box-shadow: var(--mkm-shadow-xs);
+}
+.mkm-card--interactive {
+  text-decoration: none;
+  transition: box-shadow var(--mkm-duration) var(--mkm-ease), border-color var(--mkm-duration) var(--mkm-ease);
+}
+.mkm-card--interactive:hover {
+  border-color: var(--mkm-accent-text);
+  box-shadow: var(--mkm-shadow-md);
+}
+.mkm-card__title { margin-block: var(--mkm-space-4) var(--mkm-space-2); font-size: 1.125rem; }
+.mkm-card__description { color: var(--mkm-text-muted); font-size: var(--mkm-text-sm); }
+.mkm-project-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--mkm-radius-md);
+}
+
+/* 07 — Pictogrammes SVG : Lucide, grille 24 × 24, trait homogène. */
+.mkm-icon {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 24px; height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: middle;
+}
+.mkm-icon--small { width: 20px; height: 20px; }
+.mkm-icon--service { width: 48px; height: 48px; color: var(--mkm-navy); }
+.mkm-on-dark .mkm-icon--service { color: var(--mkm-accent); }
+.mkm-card .mkm-icon--service { color: var(--mkm-navy); }
+/* Icône décorative : aria-hidden="true". Bouton à icône : nom accessible requis. */
+
+/* 08 — En-tête superposé et logos transparents.
+   Structure indispensable : .mkm-masthead[data-tone="light|dark"] contient
+   .mkm-header puis .mkm-hero. JS synchronise data-tone avec le slide actif.
+   Exemple de logo dans un unique lien aria-label="Groupe MKM — Accueil" :
+   <img class="mkm-logo mkm-logo--light" src="logo-marine-or.png" alt="">
+   <img class="mkm-logo mkm-logo--dark" src="logo-blanc-or.png" alt="">
+   Utiliser les vrais fichiers détourés, pas de filtre CSS ni cartouche blanc.
+*/
+.mkm-masthead {
+  position: relative;
+  --mkm-text: var(--mkm-navy);
+  --mkm-text-muted: #526071;
+  --mkm-local-bg: #ffffff;
+  --mkm-local-accent: #80510a;
+  color: var(--mkm-text);
+  background: var(--mkm-local-bg);
+}
+.mkm-masthead[data-tone="dark"] {
+  --mkm-text: #ffffff;
+  --mkm-text-muted: #d0d9e5;
+  --mkm-local-bg: var(--mkm-night);
+  --mkm-local-accent: var(--mkm-gold);
+}
+.mkm-header {
+  position: absolute; inset: 0 0 auto;
+  z-index: var(--mkm-z-header);
+  color: var(--mkm-text); background: transparent;
+}
+.mkm-masthead[data-tone="dark"] .mkm-header {
+  background: linear-gradient(180deg, #031525 0%, rgb(3 21 37 / 96%) 75%, transparent);
+}
+.mkm-header__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.5rem; min-height: var(--mkm-header-height); padding-block: 0.4rem;
+}
+.mkm-logo { display: block; width: clamp(70px, 10vw, 90px); height: auto; object-fit: contain; }
+.mkm-logo--dark { display: none; }
+.mkm-masthead[data-tone="dark"] .mkm-logo--light { display: none; }
+.mkm-masthead[data-tone="dark"] .mkm-logo--dark { display: block; }
+.mkm-nav { display: flex; align-items: center; gap: clamp(.75rem, 2vw, 2rem); }
+.mkm-nav__link {
+  display: inline-flex; align-items: center; gap: .5rem; min-height: 48px;
+  color: var(--mkm-text); font: 500 1.125rem/1.3 var(--mkm-font-display);
+  text-transform: none; text-decoration: none;
+  border: 0; border-bottom: 3px solid transparent; background: transparent;
+  cursor: pointer;
+}
+.mkm-nav__link:hover, .mkm-nav__link[aria-current="page"] {
+  border-bottom-color: var(--mkm-local-accent);
+}
+.mkm-nav__item { position: relative; }
+.mkm-nav__submenu {
+  position: absolute; top: 100%; left: 0; min-width: 15rem;
+  display: grid; padding: .75rem; border-radius: .5rem;
+  background: #ffffff; box-shadow: var(--mkm-shadow-lg); border: 1px solid var(--mkm-border);
+}
+.mkm-nav__submenu .mkm-nav__link { color: var(--mkm-navy); }
+.mkm-menu-toggle { display: none; }
+.mkm-skip-link {
+  position: fixed; top: .5rem; left: 1rem; z-index: 1000;
+  padding: .75rem 1rem; background: #ffffff; color: var(--mkm-navy);
+  transform: translateY(-200%);
+}
+.mkm-skip-link:focus { transform: translateY(0); }
+
+/* 09 — Hero : hauteur minimale, jamais une hauteur fixe qui coupe le texte.
+   .mkm-hero__background facultative ; images et textes HTML séparés.
+   Ne pas intégrer les captures de maquette comme image de page entière.
+*/
+.mkm-hero {
+  position: relative; isolation: isolate;
+  min-height: 100vh; min-height: 100svh;
+  display: flex; flex-direction: column;
+  padding-top: var(--mkm-header-height);
+  background: var(--mkm-local-bg, #ffffff); color: var(--mkm-text);
+}
+.mkm-hero__background {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: -3; pointer-events: none;
+}
+.mkm-masthead[data-tone="dark"] .mkm-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -2;
+  background: linear-gradient(90deg, rgb(3 21 37 / 97%) 0%, rgb(3 21 37 / 91%) 46%, rgb(3 21 37 / 65%) 100%);
+  pointer-events: none;
+}
+.mkm-hero--pattern::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: repeating-linear-gradient(145deg, transparent 0 90px, rgb(7 27 59 / 3%) 91px, transparent 92px);
+  mask-image: linear-gradient(90deg, #000, transparent 70%);
+}
+.mkm-hero__inner {
+  flex: 1; display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+  align-items: center; gap: clamp(2rem, 4vw, 4rem);
+  padding-block: clamp(2rem, 4vw, 4rem);
+}
+.mkm-hero__content { min-width: 0; }
+.mkm-hero__title {
+  font-family: var(--mkm-font-heading); font-weight: 700;
+  font-size: clamp(3rem, 4vw, 4rem);
+  line-height: 1.08; letter-spacing: -.015em; color: var(--mkm-text);
+}
+.mkm-hero__title em { font-style: normal; color: inherit; }
+.mkm-hero__description { color: var(--mkm-text-muted); max-width: 48ch; font-size: clamp(1rem, .85rem + .5vw, 1.25rem); }
+.mkm-masthead .mkm-eyebrow { color: var(--mkm-text); }
+.mkm-hero__media { min-width: 0; }
+.mkm-hero__features { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; }
+.mkm-feature { display: grid; gap: .5rem; font-size: .875rem; }
+.mkm-feature .mkm-icon { width: 36px; height: 36px; }
+/* Compositions : images seules, jamais texte/boutons dans un clip-path. */
+.mkm-collage { display: grid; grid-template-columns: 1.2fr 1fr; gap: .75rem; }
+.mkm-collage__item { margin: 0; min-width: 0; overflow: hidden; border-radius: 1rem; border: 1px solid #c48a25; }
+.mkm-collage__item img { width: 100%; height: 100%; min-height: 12rem; object-fit: cover; object-position: var(--mkm-image-position, center); }
+.mkm-collage__item--wide { grid-column: 1 / -1; aspect-ratio: 16 / 7; }
+.mkm-collage--editorial { align-items: start; }
+.mkm-collage--editorial .mkm-collage__item:first-child { grid-row: span 2; }
+.mkm-collage--editorial .mkm-collage__item:first-child img { min-height: 26rem; }
+.mkm-collage--editorial .mkm-collage__item--wide { grid-column: 2; aspect-ratio: 4 / 3; }
+.mkm-hero__product { width: 100%; height: auto; object-fit: contain; }
+.mkm-slider-footer { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; padding-block: 1rem 2rem; }
+.mkm-slider-controls, .mkm-slider-pagination { display: flex; align-items: center; gap: .75rem; }
+.mkm-slider-control, .mkm-menu-toggle {
+  align-items: center; justify-content: center; width: 48px; height: 48px;
+  flex-shrink: 0; border-radius: 50%; border: 2px solid var(--mkm-text);
+  color: var(--mkm-text); background: var(--mkm-local-bg, #ffffff); cursor: pointer;
+}
+.mkm-slider-control { display: inline-flex; }
+.mkm-slider-control:hover { background: var(--mkm-gold); color: var(--mkm-navy); }
+.mkm-slider-page {
+  min-width: 48px; min-height: 48px; padding: .5rem .75rem;
+  color: var(--mkm-text); background: transparent; cursor: pointer;
+  border: 0; border-bottom: 3px solid var(--mkm-border-strong);
+  font: 600 1.125rem/1.4 var(--mkm-font-body);
+}
+.mkm-slider-page[aria-current="true"] { border-bottom-color: var(--mkm-local-accent); font-weight: 700; }
+/* JS : masquer les slides inactifs avec hidden + inert ; aucune cible cachée
+   dans le parcours clavier. Une seule région active. Pas de focus automatique.
+   Rotation manuelle par défaut ; si autoplay, vrai bouton pause, arrêt au focus
+   et au survol ; reprise uniquement sur demande après arrêt au clavier.
+   Synchroniser data-tone du masthead et le bouton aria-current. */
+
+/* 10 — Formulaires de contact et d'estimation */
+.mkm-field { display: grid; gap: .5rem; margin-block-end: 1.5rem; }
+.mkm-label { color: var(--mkm-text); font-size: .875rem; font-weight: 600; }
+.mkm-input, .mkm-select, .mkm-textarea {
+  width: 100%; min-height: 48px;
+  padding: .75rem 1rem;
+  background: #ffffff; color: var(--mkm-navy);
+  border: 1px solid var(--mkm-border-strong);
+  border-radius: var(--mkm-radius-md);
+  font: inherit;
+}
+.mkm-textarea { min-height: 144px; resize: vertical; }
+.mkm-input::placeholder, .mkm-textarea::placeholder { color: #526071; opacity: 1; }
+.mkm-input:disabled, .mkm-select:disabled, .mkm-textarea:disabled { background: var(--mkm-disabled-bg); cursor: not-allowed; }
+.mkm-field [aria-invalid="true"] { border-color: var(--mkm-error); border-width: 2px; }
+.mkm-help { margin: 0; font-size: .875rem; color: var(--mkm-text-muted); }
+.mkm-error { color: var(--mkm-error); font-size: .875rem; }
+.mkm-alert { background: #ffffff; color: var(--mkm-navy); border: 1px solid var(--mkm-border); border-inline-start: 4px solid var(--mkm-info); padding: 1rem 1.5rem; border-radius: var(--mkm-radius-md); }
+.mkm-alert--success { border-inline-start-color: var(--mkm-success); }
+.mkm-alert--warning { border-inline-start-color: var(--mkm-warning); }
+.mkm-alert--error { border-inline-start-color: var(--mkm-error); }
+/* Associer les aides/erreurs aux champs via aria-describedby et garder un label. */
+
+/* 11 — Responsive : panneau de navigation piloté par aria-expanded.
+   Au mobile, placer .mkm-nav après le bouton dans .mkm-header__inner.
+   Escape ferme le menu et rend le focus au bouton ; fermeture au clic dehors.
+   Sous-menus : bouton aria-expanded / aria-controls et hidden gérés en JS.
+*/
+.mkm-site [hidden] { display: none !important; }
+@media (max-width: 72rem) {
+  .mkm-header__inner { gap: .75rem; }
+  .mkm-menu-toggle { display: inline-flex; }
+  .mkm-header__cta { display: none; }
+  .mkm-nav {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    padding: 1.5rem; background: var(--mkm-local-bg);
+    box-shadow: var(--mkm-shadow-md); max-height: calc(100svh - var(--mkm-header-height)); overflow-y: auto;
+  }
+  .mkm-header:has(.mkm-menu-toggle[aria-expanded="true"]) .mkm-nav { display: flex; flex-direction: column; align-items: stretch; }
+  .mkm-nav__submenu { position: static; min-width: 0; }
+  .mkm-grid--services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 56rem) {
+  .mkm-masthead { --mkm-header-height: 6rem; }
+  .mkm-hero__inner { grid-template-columns: 1fr; gap: 2rem; }
+  .mkm-hero__media { width: 100%; max-width: 42rem; margin-inline: auto; }
+  .mkm-hero__title { max-width: 22ch; }
+  .mkm-grid--projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 40rem) {
+  .mkm-site { --mkm-gutter: 1rem; }
+  .mkm-grid--projects, .mkm-grid--services { grid-template-columns: 1fr; }
+  .mkm-actions { align-items: stretch; }
+  .mkm-actions .mkm-btn { width: 100%; }
+  .mkm-card { padding: 1.25rem; }
+  .mkm-collage { grid-template-columns: 1fr; }
+  .mkm-collage .mkm-collage__item { grid-column: auto; grid-row: auto; aspect-ratio: 4 / 3; }
+  .mkm-collage .mkm-collage__item img { min-height: 0; }
+  .mkm-slider-footer { justify-content: center; }
+}
+/* Écran large mais bas (ex. 1280×672) : ne plus forcer le hero à 100svh,
+   sinon le collage se tasse et object-fit:cover rogne le haut/bas. */
+@media (max-height: 50rem) {
+  .mkm-collage__item img,
+  .mkm-collage--editorial .mkm-collage__item:first-child img { min-height: 0; }
+  .mkm-collage__item--wide { aspect-ratio: 3 / 2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mkm-site *, .mkm-site *::before, .mkm-site *::after {
+    animation: none !important; transition: none !important; scroll-behavior: auto !important;
+  }
+  /* JS doit aussi désactiver autoplay/parallaxe via matchMedia. */
+}
+@media (forced-colors: active) {
+  .mkm-btn, .mkm-card, .mkm-slider-control, .mkm-menu-toggle { border: 2px solid ButtonText; }
+  .mkm-slider-page[aria-current="true"], .mkm-nav__link[aria-current="page"] { border-bottom: 4px solid Highlight; }
+  .mkm-site :focus-visible { outline: 3px solid Highlight; box-shadow: none; }
+}
+@media print {
+  .mkm-site, .mkm-section, .mkm-card, .mkm-on-dark, .mkm-masthead {
+    --mkm-text: #000000; --mkm-text-muted: #333333; --mkm-local-bg: #ffffff;
+    --mkm-local-accent: #000000; background: #ffffff; color: #000000; box-shadow: none;
+  }
+  .mkm-header, .mkm-slider-footer, .mkm-hero__background,
+  .mkm-hero::before, .mkm-hero::after { display: none; }
+  .mkm-hero { min-height: 0; padding-top: 0; }
+  .mkm-hero__inner { display: block; }
+  .mkm-card { break-inside: avoid; }
+}
